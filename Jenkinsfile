@@ -29,6 +29,12 @@ node {
     }
   }
 
+  docker.image('persapiens/chrome-maven-openjdk:' + chrome_image_version).inside("-v ${env.MAVEN_LOCAL_REPOSITORY}:/root/.m2") {
+    stage ('Test Chrome') {
+      sh "/usr/bin/xvfb-run mvn -DwebDriverType=chrome -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
+    }
+  }
+
   stage ('Package') {
     docker.withRegistry('https://nexus.devops.ifrn.edu.br') {
       docker.build("corporativo/" + application.toLowerCase() + ":" + docker_version).push(docker_version)
