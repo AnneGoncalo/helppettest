@@ -17,7 +17,7 @@ services:
       - "8081:8080"
     restart: always
     environment:
-      spring.datasource.url: jdbc:postgresql://db:5432/conta
+      JAVA_OPTS: -Dspring.datasource.url=jdbc:postgresql://db:5432/conta
 volumes:
   db_data:
 
