@@ -1,0 +1,53 @@
+---
+- hosts: producao
+  tasks:
+    # criar a pasta para guardar o docker-compose-yml
+    - name: "Create dockerbuild folder"
+      file:
+        path: /home/producao/conta
+        state: directory
+        owner: producao
+        group: producao
+      become: yes
+      become_user: producao
+    
+    # copiar o arquivo de docker-compose
+    - name: "Copy docker-compose.yml"
+      copy:
+        src: docker-compose.yml
+        dest: /home/producao/dockerbuild
+        mode: 0666
+        owner: producao
+        group: producao
+    
+    # parar o docker-compose da aplicacao
+    - name: "Docker conta compose stop"
+      docker_service:
+        project_name: conta
+        project_src: /home/producao/conta
+        state: absent
+        remove_images: all
+      become: yes
+      become_user: site
+    
+    # atualizar a imagem do postgres
+    - name: "Docker postgres pull latest"
+      docker_image:
+        name: postgres:latest
+      become: yes
+      become_user: producao
+    
+    # atualizar a imagem do conta
+    - name: "Docker conta pull latest"
+      docker_image:
+        name: nexus.devops.ifrn.edu.br/corporativo/conta:latest
+      become: yes
+      become_user: producao
+    
+    # executar o docker-compose conta
+    - name: "Docker conta compose run"
+      docker_service:   
+        project_name: producao
+        project_src: /home/producao/conta
+      become: yes
+      become_user: producao

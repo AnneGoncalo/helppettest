@@ -1,0 +1,53 @@
+---
+- hosts: homologacao
+  tasks:
+    # criar a pasta para guardar o docker-compose-yml
+    - name: "Create dockerbuild folder"
+      file:
+        path: /home/homologacao/conta
+        state: directory
+        owner: homologacao
+        group: homologacao
+      become: yes
+      become_user: homologacao
+    
+    # copiar o arquivo de docker-compose
+    - name: "Copy docker-compose.yml"
+      copy:
+        src: docker-compose.yml
+        dest: /home/homologacao/dockerbuild
+        mode: 0666
+        owner: homologacao
+        group: homologacao
+    
+    # parar o docker-compose da aplicacao
+    - name: "Docker conta compose stop"
+      docker_service:
+        project_name: conta
+        project_src: /home/homologacao/conta
+        state: absent
+        remove_images: all
+      become: yes
+      become_user: site
+    
+    # atualizar a imagem do postgres
+    - name: "Docker postgres pull latest"
+      docker_image:
+        name: postgres:latest
+      become: yes
+      become_user: homologacao
+    
+    # atualizar a imagem do conta
+    - name: "Docker conta pull latest"
+      docker_image:
+        name: nexus.devops.ifrn.edu.br/corporativo/conta:latest
+      become: yes
+      become_user: homologacao
+    
+    # executar o docker-compose conta
+    - name: "Docker conta compose run"
+      docker_service:   
+        project_name: homologacao
+        project_src: /home/homologacao/conta
+      become: yes
+      become_user: homologacao
