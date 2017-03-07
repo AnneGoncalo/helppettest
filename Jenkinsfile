@@ -21,6 +21,12 @@ node {
     }
   }
 
+  docker.image('persapiens/firefox-maven-openjdk:' + firefox_image_version).inside("-v ${env.MAVEN_LOCAL_REPOSITORY}:/root/.m2") {
+    stage ('Test Firefox') {
+      sh "/usr/bin/xvfb-run mvn -DwebDriverType=firefox -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
+    }
+  }
+
   stage ('Package') {
     docker.withRegistry('https://nexus.devops.ifrn.edu.br') {
       docker.build("corporativo/" + application.toLowerCase() + ":" + docker_version).push(docker_version)
