@@ -28,7 +28,7 @@
         state: absent
         remove_images: all
       become: yes
-      become_user: site
+      become_user: homologacao
     
     # atualizar a imagem do postgres
     - name: "Docker postgres pull latest"
