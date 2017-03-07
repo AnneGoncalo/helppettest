@@ -11,7 +11,7 @@ def maven_build_options = '-T 1C'
 def maven_test_options = '-T 1C -Djava.security.auth.login.config=ignoreMe.conf' 
 
 node {
-  docker.image('persapiens/maven-openjdk:' + build_image_version).inside("-v ${env.MAVEN_LOCAL_REPOSITORY}:/root/.m2") {
+  docker.image('persapiens/maven-openjdk:' + maven_image_version).inside("-v ${env.MAVEN_LOCAL_REPOSITORY}:/root/.m2") {
     stage ('Checkout') {
       git ([url: 'https://gitlab.devops.ifrn.edu.br/corporativo/' + git_repository + '.git', branch: git_branch])
     }
