@@ -2,7 +2,7 @@
 - hosts: producao
   tasks:
     # criar a pasta para guardar o docker-compose-yml
-    - name: "Create dockerbuild folder"
+    - name: "Create conta folder"
       file:
         path: /home/producao/conta
         state: directory
@@ -15,7 +15,7 @@
     - name: "Copy docker-compose.yml"
       copy:
         src: docker-compose.yml
-        dest: /home/producao/dockerbuild
+        dest: /home/producao/conta
         mode: 0666
         owner: producao
         group: producao

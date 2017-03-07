@@ -2,7 +2,7 @@
 - hosts: homologacao
   tasks:
     # criar a pasta para guardar o docker-compose-yml
-    - name: "Create dockerbuild folder"
+    - name: "Create conta folder"
       file:
         path: /home/homologacao/conta
         state: directory
@@ -15,7 +15,7 @@
     - name: "Copy docker-compose.yml"
       copy:
         src: docker-compose.yml
-        dest: /home/homologacao/dockerbuild
+        dest: /home/homologacao/conta
         mode: 0666
         owner: homologacao
         group: homologacao
