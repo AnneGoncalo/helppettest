@@ -31,11 +31,11 @@
       become_user: homologacao
     
     # atualizar a imagem do postgres
-    - name: "Docker postgres pull latest"
-      docker_image:
-        name: postgres:latest
-      become: yes
-      become_user: homologacao
+    #- name: "Docker postgres pull latest"
+    #  docker_image:
+    #    name: postgres:latest
+    #  become: yes
+    #  become_user: homologacao
     
     # atualizar a imagem do conta
     - name: "Docker conta pull latest"
