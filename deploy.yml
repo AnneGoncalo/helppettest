@@ -23,11 +23,12 @@
     # parar o docker-compose da aplicacao
     - name: "Docker {{ application }} compose stop"
       docker_service:
-        project_name: {{ application }}
+        project_name: "{{ application }}"
         project_src: /home/{{ environment }}/{{ application }}
         state: absent
         remove_images: all
         env:
+          application: {{ application }}
           port: {{ port }}
       become: yes
       become_user: "{{ environment }}"
@@ -49,9 +50,10 @@
     # executar o docker-compose {{ application }}
     - name: "Docker {{ application }} compose run"
       docker_service:   
-        project_name: {{ environment }}
+        project_name: "{{ application }}"
         project_src: /home/{{ environment }}/{{ application }}
         env:
+          application: {{ application }}
           port: {{ port }}
       become: yes
       become_user: "{{ environment }}"
