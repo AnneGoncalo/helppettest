@@ -28,8 +28,8 @@
         state: absent
         remove_images: all
         env:
-          application: {{ application }}
-          port: {{ port }}
+          application: "{{ application }}"
+          port: "{{ port }}"
       become: yes
       become_user: "{{ environment }}"
     
@@ -53,7 +53,7 @@
         project_name: "{{ application }}"
         project_src: /home/{{ environment }}/{{ application }}
         env:
-          application: {{ application }}
-          port: {{ port }}
+          application: "{{ application }}"
+          port: "{{ port }}"
       become: yes
       become_user: "{{ environment }}"
