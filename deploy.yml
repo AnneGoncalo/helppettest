@@ -24,7 +24,7 @@
     - name: "Docker {{ application }} compose stop"
       docker_service:
         project_name: "{{ application }}"
-        project_src: /home/{{ user }}/{{ application }}
+        project_src: "/home/{{ user }}/{{ application }}"
         state: absent
         remove_images: all
       become: yes
@@ -38,16 +38,16 @@
     #  become_user: {{ user }}
     
     # atualizar a imagem do {{ application }}
-    - name: "Docker {{ application }} pull latest"
-      docker_image:
-        name: nexus.devops.ifrn.edu.br/corporativo/{{ application }}:latest
-      become: yes
-      become_user: "{{ user }}"
+    #- name: "Docker {{ application }} pull latest"
+    #  docker_image:
+    #    name: nexus.devops.ifrn.edu.br/corporativo/{{ application }}:latest
+    #  become: yes
+    #  become_user: "{{ user }}"
     
     # executar o docker-compose {{ application }}
-    - name: "Docker {{ application }} compose run"
-      docker_service:   
-        project_name: "{{ application }}"
-        project_src: /home/{{ user }}/{{ application }}
-      become: yes
-      become_user: "{{ user }}"
+    #- name: "Docker {{ application }} compose run"
+    #  docker_service:   
+    #    project_name: "{{ application }}"
+    #    project_src: "/home/{{ user }}/{{ application }}"
+    #  become: yes
+    #  become_user: "{{ user }}"
