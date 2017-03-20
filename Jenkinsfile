@@ -47,13 +47,13 @@ node {
 
   stage ('Staging') {
     wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-      ansiblePlaybook colorized: true, credentialsId: 'homologacao', inventory: "${env.ANSIBLE_HOSTS}", playbook: 'deploy.yml', sudoUser: null, extras: '--extra-vars "environment=homologacao application=' + application + ' port=' + port + '"'
+      ansiblePlaybook colorized: true, credentialsId: 'homologacao', inventory: "${env.ANSIBLE_HOSTS}", playbook: 'deploy.yml', sudoUser: null, extras: '--extra-vars "host=homologacao user=homologacao application=' + application + ' port=' + port + '"'
     }
   }  
 
   stage ('Production') {
     wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-      ansiblePlaybook colorized: true, credentialsId: 'producao', inventory: "${env.ANSIBLE_HOSTS}", playbook: 'deploy.yml', sudoUser: null, extras: '--extra-vars "environment=producao application=' + application + ' port=' + port + '"'
+      ansiblePlaybook colorized: true, credentialsId: 'producao', inventory: "${env.ANSIBLE_HOSTS}", playbook: 'deploy.yml', sudoUser: null, extras: '--extra-vars "host=producao user=producao application=' + application + ' port=' + port + '"'
     }
   }  
 }
