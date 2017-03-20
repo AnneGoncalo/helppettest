@@ -29,6 +29,10 @@
       become: yes
       become_user: "{{ user }}"
 
+    - name: "Waiting docker-compose down"
+      pause:
+        seconds: 15
+
     # remove a imagem do {{ application }}
     - name: "Docker {{ application }} rmi"
       docker_image:
