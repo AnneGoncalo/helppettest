@@ -31,7 +31,7 @@
 
     - name: "Waiting docker-compose down"
       pause:
-        seconds: 60
+        seconds: 20
 
     # remove a imagem do {{ application }}
     - name: "Docker {{ application }} rmi"
