@@ -1,6 +1,7 @@
 #!groovy
 
 def application = 'conta'
+def port = '8081'
 def docker_version = 'latest'
 def maven_image_version = '3.3.9-8u121'
 def firefox_image_version = '51-3.3.9-8u121'
@@ -44,15 +45,15 @@ node {
     sh "docker rmi corporativo/" + application.toLowerCase() + ":" + docker_version
   }
 
-  stage ('Homologacao') {
+  stage ('Staging') {
     wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-      ansiblePlaybook colorized: true, credentialsId: 'homologacao', inventory: 'hosts', playbook: 'homologacao.yml', sudoUser: null
+      ansiblePlaybook colorized: true, credentialsId: 'homologacao', inventory: "${env.ANSIBLE_HOSTS}", playbook: 'deploy.yml', sudoUser: null, extras: '"--extra-vars environment=homologacao application=' + application + 'port=' + port + '"'
     }
   }  
 
-  stage ('Producao') {
+  stage ('Production') {
     wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-      ansiblePlaybook colorized: true, credentialsId: 'producao', inventory: 'hosts', playbook: 'producao.yml', sudoUser: null
+      ansiblePlaybook colorized: true, credentialsId: 'producao', inventory: "${env.ANSIBLE_HOSTS}", playbook: 'deploy.yml', sudoUser: null, extras: '"--extra-vars environment=producao application=' + application + 'port=' + port + '"'
     }
   }  
 }

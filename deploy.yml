@@ -1,0 +1,57 @@
+---
+- hosts: {{ environment }}
+  tasks:
+    # criar a pasta para guardar o docker-compose-yml
+    - name: "Create {{ application }} folder"
+      file:
+        path: /home/{{ environment }}/{{ application }}
+        state: directory
+        owner: {{ environment }}
+        group: {{ environment }}
+      become: yes
+      become_user: {{ environment }}
+    
+    # copiar o arquivo de docker-compose
+    - name: "Copy docker-compose.yml"
+      copy:
+        src: docker-compose.yml
+        dest: /home/{{ environment }}/{{ application }}
+        mode: 0666
+        owner: {{ environment }}
+        group: {{ environment }}
+    
+    # parar o docker-compose da aplicacao
+    - name: "Docker {{ application }} compose stop"
+      docker_service:
+        project_name: {{ application }}
+        project_src: /home/{{ environment }}/{{ application }}
+        state: absent
+        remove_images: all
+        env:
+          port: {{ port }}
+      become: yes
+      become_user: {{ environment }}
+    
+    # atualizar a imagem do postgres
+    #- name: "Docker postgres pull latest"
+    #  docker_image:
+    #    name: postgres:latest
+    #  become: yes
+    #  become_user: {{ environment }}
+    
+    # atualizar a imagem do {{ application }}
+    - name: "Docker {{ application }} pull latest"
+      docker_image:
+        name: nexus.devops.ifrn.edu.br/corporativo/{{ application }}:latest
+      become: yes
+      become_user: {{ environment }}
+    
+    # executar o docker-compose {{ application }}
+    - name: "Docker {{ application }} compose run"
+      docker_service:   
+        project_name: {{ environment }}
+        project_src: /home/{{ environment }}/{{ application }}
+        env:
+          port: {{ port }}
+      become: yes
+      become_user: {{ environment }}
