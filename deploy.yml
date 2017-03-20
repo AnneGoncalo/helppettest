@@ -6,8 +6,8 @@
       file:
         path: /home/{{ environment }}/{{ application }}
         state: directory
-        owner: {{ environment }}
-        group: {{ environment }}
+        owner: "{{ environment }}"
+        group: "{{ environment }}"
       become: yes
       become_user: "{{ environment }}"
     
@@ -17,8 +17,8 @@
         src: docker-compose.yml
         dest: /home/{{ environment }}/{{ application }}
         mode: 0666
-        owner: {{ environment }}
-        group: {{ environment }}
+        owner: "{{ environment }}"
+        group: "{{ environment }}"
     
     # parar o docker-compose da aplicacao
     - name: "Docker {{ application }} compose stop"
