@@ -12,8 +12,8 @@
       become_user: "{{ user }}"
     
     # copiar o arquivo de docker-compose
-    - name: "Copy docker-compose.yml"
-      copy:
+    - name: "Create docker-compose.yml"
+      template:
         src: docker-compose.yml
         dest: /home/{{ user }}/{{ application }}
         mode: 0666
@@ -27,9 +27,6 @@
         project_src: /home/{{ user }}/{{ application }}
         state: absent
         remove_images: all
-        env:
-          application: "{{ application }}"
-          port: "{{ port }}"
       become: yes
       become_user: "{{ user }}"
     
@@ -52,8 +49,5 @@
       docker_service:   
         project_name: "{{ application }}"
         project_src: /home/{{ user }}/{{ application }}
-        env:
-          application: "{{ application }}"
-          port: "{{ port }}"
       become: yes
       become_user: "{{ user }}"
