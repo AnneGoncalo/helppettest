@@ -1,59 +1,59 @@
 ---
-- hosts: "{{ environment }}"
+- hosts: "{{ host }}"
   tasks:
     # criar a pasta para guardar o docker-compose-yml
     - name: "Create {{ application }} folder"
       file:
-        path: /home/{{ environment }}/{{ application }}
+        path: /home/{{ user }}/{{ application }}
         state: directory
-        owner: "{{ environment }}"
-        group: "{{ environment }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
       become: yes
-      become_user: "{{ environment }}"
+      become_user: "{{ user }}"
     
     # copiar o arquivo de docker-compose
     - name: "Copy docker-compose.yml"
       copy:
         src: docker-compose.yml
-        dest: /home/{{ environment }}/{{ application }}
+        dest: /home/{{ user }}/{{ application }}
         mode: 0666
-        owner: "{{ environment }}"
-        group: "{{ environment }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
     
     # parar o docker-compose da aplicacao
     - name: "Docker {{ application }} compose stop"
       docker_service:
         project_name: "{{ application }}"
-        project_src: /home/{{ environment }}/{{ application }}
+        project_src: /home/{{ user }}/{{ application }}
         state: absent
         remove_images: all
         env:
           application: "{{ application }}"
           port: "{{ port }}"
       become: yes
-      become_user: "{{ environment }}"
+      become_user: "{{ user }}"
     
     # atualizar a imagem do postgres
     #- name: "Docker postgres pull latest"
     #  docker_image:
     #    name: postgres:latest
     #  become: yes
-    #  become_user: {{ environment }}
+    #  become_user: {{ user }}
     
     # atualizar a imagem do {{ application }}
     - name: "Docker {{ application }} pull latest"
       docker_image:
         name: nexus.devops.ifrn.edu.br/corporativo/{{ application }}:latest
       become: yes
-      become_user: "{{ environment }}"
+      become_user: "{{ user }}"
     
     # executar o docker-compose {{ application }}
     - name: "Docker {{ application }} compose run"
       docker_service:   
         project_name: "{{ application }}"
-        project_src: /home/{{ environment }}/{{ application }}
+        project_src: /home/{{ user }}/{{ application }}
         env:
           application: "{{ application }}"
           port: "{{ port }}"
       become: yes
-      become_user: "{{ environment }}"
+      become_user: "{{ user }}"
