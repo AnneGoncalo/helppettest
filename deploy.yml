@@ -1,5 +1,5 @@
 ---
-- hosts: {{ environment }}
+- hosts: "{{ environment }}"
   tasks:
     # criar a pasta para guardar o docker-compose-yml
     - name: "Create {{ application }} folder"
