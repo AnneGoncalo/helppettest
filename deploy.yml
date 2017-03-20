@@ -9,7 +9,7 @@
         owner: {{ environment }}
         group: {{ environment }}
       become: yes
-      become_user: {{ environment }}
+      become_user: "{{ environment }}"
     
     # copiar o arquivo de docker-compose
     - name: "Copy docker-compose.yml"
@@ -30,7 +30,7 @@
         env:
           port: {{ port }}
       become: yes
-      become_user: {{ environment }}
+      become_user: "{{ environment }}"
     
     # atualizar a imagem do postgres
     #- name: "Docker postgres pull latest"
@@ -44,7 +44,7 @@
       docker_image:
         name: nexus.devops.ifrn.edu.br/corporativo/{{ application }}:latest
       become: yes
-      become_user: {{ environment }}
+      become_user: "{{ environment }}"
     
     # executar o docker-compose {{ application }}
     - name: "Docker {{ application }} compose run"
@@ -54,4 +54,4 @@
         env:
           port: {{ port }}
       become: yes
-      become_user: {{ environment }}
+      become_user: "{{ environment }}"
