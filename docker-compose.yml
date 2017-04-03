@@ -9,6 +9,7 @@ services:
       POSTGRES_DB: {{ application }}
       POSTGRES_USER: {{ application }}
       POSTGRES_PASSWORD: {{ application }}
+      TZ: "America/Recife"
   web:
     depends_on: 
       - db
@@ -18,6 +19,7 @@ services:
     restart: always
     environment:
       JAVA_OPTS: -Dspring.datasource.url=jdbc:postgresql://db:5432/{{ application }}
+      TZ: "America/Recife"
 volumes:
   db_data:
 
