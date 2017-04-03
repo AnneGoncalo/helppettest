@@ -1,7 +1,7 @@
 #!groovy
 
 def application = 'conta'
-def port = '8081'
+def port = '8091'
 def docker_version = 'latest'
 def maven_image_version = '3.3.9-8u121'
 def firefox_image_version = '51-3.3.9-8u121'
