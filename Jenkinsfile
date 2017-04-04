@@ -18,7 +18,7 @@ node {
     }
 
     stage ('Build') {
-      sh "mvn " + maven_build_options + " -Dmaven.test.skip=true -Pcheck-checkstyle,check-cpd,check-pmd,check-cycles,check-duplicate,check-findbugs clean verify"
+      sh "mvn " + maven_build_options + " --settings ${env.MAVEN_LOCAL_REPOSITORY}/settings.xml -Dmaven.test.skip=true -Pcheck-checkstyle,check-cpd,check-pmd,check-cycles,check-duplicate,check-findbugs clean verify"
 
       step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
     }
@@ -26,13 +26,13 @@ node {
 
   docker.image('persapiens/firefox-maven-openjdk:' + firefox_image_version).inside() {
     stage ('Test Firefox') {
-      sh "/usr/bin/xvfb-run mvn -DwebDriverType=firefox -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
+      sh "/usr/bin/xvfb-run mvn --settings ${env.MAVEN_LOCAL_REPOSITORY}/settings.xml -DwebDriverType=firefox -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
     }
   }
 
   docker.image('persapiens/chrome-maven-openjdk:' + chrome_image_version).inside() {
     stage ('Test Chrome') {
-      sh "/usr/bin/xvfb-run mvn -DwebDriverType=chrome -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
+      sh "/usr/bin/xvfb-run mvn --settings ${env.MAVEN_LOCAL_REPOSITORY}/settings.xml -DwebDriverType=chrome -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
     }
   }
 
