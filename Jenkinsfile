@@ -12,7 +12,7 @@ def maven_build_options = '-T 1C'
 def maven_test_options = '-T 1C -Djava.security.auth.login.config=ignoreMe.conf' 
 
 node {
-  docker.image('persapiens/maven-openjdk:' + maven_image_version).inside("-v ${env.MAVEN_LOCAL_REPOSITORY}:/root/.m2") {
+  docker.image('persapiens/maven-openjdk:' + maven_image_version) {
     stage ('Checkout') {
       git ([url: 'https://gitlab.devops.ifrn.edu.br/corporativo/' + git_repository + '.git', branch: git_branch])
     }
@@ -24,13 +24,13 @@ node {
     }
   }
 
-  docker.image('persapiens/firefox-maven-openjdk:' + firefox_image_version).inside("-v ${env.MAVEN_LOCAL_REPOSITORY}:/root/.m2") {
+  docker.image('persapiens/firefox-maven-openjdk:' + firefox_image_version) {
     stage ('Test Firefox') {
       sh "/usr/bin/xvfb-run mvn -DwebDriverType=firefox -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
     }
   }
 
-  docker.image('persapiens/chrome-maven-openjdk:' + chrome_image_version).inside("-v ${env.MAVEN_LOCAL_REPOSITORY}:/root/.m2") {
+  docker.image('persapiens/chrome-maven-openjdk:' + chrome_image_version) {
     stage ('Test Chrome') {
       sh "/usr/bin/xvfb-run mvn -DwebDriverType=chrome -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
     }
