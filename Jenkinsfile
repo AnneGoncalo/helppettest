@@ -1,12 +1,12 @@
 #!groovy
 
-def application = 'conta'
-def port = '8091'
+def application = 'apelidador'
+def port = '8093'
 def docker_version = 'latest'
 def maven_image_version = '3.3.9-8u121'
 def firefox_image_version = '51-3.3.9-8u121'
 def chrome_image_version = '56-3.3.9-8u121'
-def git_repository = 'conta'
+def git_repository = 'apelidador'
 def git_branch = 'master'
 def maven_build_options = '-T 1C'
 def maven_test_options = '-T 1C -Djava.security.auth.login.config=ignoreMe.conf'
