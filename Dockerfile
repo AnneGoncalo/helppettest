@@ -1,4 +1,4 @@
-FROM persapiens/openjre:8u121
+FROM persapiens/openjre:8u131
 
 MAINTAINER Marcelo Fernandes "marcelo.fernandes@ifrn.edu.br"
 
