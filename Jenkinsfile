@@ -3,14 +3,8 @@
 def application = 'apelidador'
 def port = '8093'
 def docker_version = 'latest'
-<<<<<<< HEAD
-def maven_image_version = '3.3.9-8u121'
-def firefox_image_version = '51-3.3.9-8u121'
-def chrome_image_version = '56-3.3.9-8u121'
-=======
 def maven_image_version = '3.5.0-8u131'
 def firefox_image_version = '53-3.5.0-8u131'
->>>>>>> 8daeef80b10131ae53f58fa24aa75ef7c7efef07
 def git_repository = 'apelidador'
 def git_branch = 'master'
 def maven_build_options = '-T 1C'
@@ -35,20 +29,10 @@ node {
     }
   }
 
-<<<<<<< HEAD
-  docker.image('persapiens/chrome-maven-openjdk:' + chrome_image_version).inside() {
-    stage ('Test Chrome') {
-      sh "/usr/bin/xvfb-run mvn --settings ${env.MAVEN_LOCAL_REPOSITORY}/settings.xml -DwebDriverType=chrome -Pignore-snapshot-repositories,check-cobertura-integration-test,attach-integration-test clean cobertura:check-integration-test"
-    }
-  }
-
-=======
   docker.image('persapiens/maven-openjdk:' + maven_image_version).inside() {
     sh "mvn " + maven_build_options + " --settings ${env.MAVEN_LOCAL_REPOSITORY}/settings.xml -Dmaven.test.skip=true clean verify"
   }
 
-
->>>>>>> 8daeef80b10131ae53f58fa24aa75ef7c7efef07
   stage ('Package') {
     docker.withRegistry('https://nexus.devops.ifrn.edu.br') {
       docker.build("corporativo/" + application.toLowerCase() + ":" + docker_version).push(docker_version)
