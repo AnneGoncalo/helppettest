@@ -1,0 +1,25 @@
+version: '2'
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_DB: {{ application }}
+      POSTGRES_USER: {{ application }}
+      POSTGRES_PASSWORD: {{ application }}
+      TZ: "America/Recife"
+  web:
+    depends_on: 
+      - db
+    image: nexus.devops.ifrn.edu.br/corporativo/{{ application }}:latest
+    ports:
+      - "{{ port }}:8080"
+    restart: always
+    environment:
+      JAVA_OPTS: -Dspring.datasource.url=jdbc:postgresql://db:5432/{{ application }}
+      TZ: "America/Recife"
+volumes:
+  db_data:
+
