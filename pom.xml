@@ -271,14 +271,14 @@
         </developer>
         <developer>
             <id>nirvana</id>
-            <name>Nirvana</name>
-            <email>nirvana@email.com</email>
+            <name>Nirvana Dantas</name>
+            <email>nirvanadesara@gmail.com</email>
             <timezone>-3</timezone>
         </developer>
         <developer>
             <id>dailson</id>
-            <name>Dailson</name>
-            <email>dailson@email.com</email>
+            <name>Dailson Gomes de Assis</name>
+            <email>dailson.gomes@academico.ifrn.edu.br</email>
             <timezone>-3</timezone>
         </developer>
     </developers>
