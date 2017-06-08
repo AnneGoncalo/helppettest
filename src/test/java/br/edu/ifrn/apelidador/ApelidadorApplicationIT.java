@@ -16,7 +16,6 @@
 
 package br.edu.ifrn.apelidador;
 
-import br.edu.ifrn.apelidador.Apelidador;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
