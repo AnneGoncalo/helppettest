@@ -1,4 +1,4 @@
-Conta
+Help Pet
 =====
 [![Heroku](http://heroku-badge.herokuapp.com/?app=contar&root=index.jsf)](https://contar.herokuapp.com)
 [![Build Status](https://travis-ci.org/persapiens/conta.svg?branch=master)](https://travis-ci.org/persapiens/conta)
@@ -6,17 +6,17 @@ Conta
 [![Dependency Status](https://www.versioneye.com/user/projects/573c95dace8d0e00360bcee6/badge.svg?style=flat)](https://www.versioneye.com/user/projects/573c95dace8d0e00360bcee6)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-O aplicativo Conta é o projeto didático da [Disciplina Desenvolvimento de Sistemas Corporativos](http://diatinf.ifrn.edu.br/lib/exe/fetch.php?media=cursos:superiores:tads:curso2012:ementas:05_desenvolvimento_de_sistemas_coorporativos.pdf) do [Curso Tecnologia em Análise e Desenvolvimento de Sistemas - TADS](http://diatinf.ifrn.edu.br/doku.php?id=cursos:superiores:tads:start) - da [Diretoria Acadêmica de Gestão e Tecnologia da Informação - DIATINF](http://diatinf.ifrn.edu.br) - do [Campus Natal Central - CNAT](http://portal.ifrn.edu.br/campus/natalcentral) - do [Instituto Federal do Rio Grande do Norte - IFRN](http://portal.ifrn.edu.br/).
+O Help Pet é uma plataforma de ajuda animal.
+Nossa API está disponível no [Herouku](https://helppettest.herokuapp.com/index.xhtml)
+Para acessar nossa API basta add /rest/*. Por exemplo: https://helppettest.herokuapp.com/rest/denuncia
 
-Normalmente, a cada semana, o aplicativo é evoluído com a conclusão de uma milestone.
-
-As notas de aula utilizadas no desenvolvimento deste projeto estão [aqui](https://docente.ifrn.edu.br/marcelofernandes/disciplinas/desenvolvimento-de-sistemas-corporativos-dsc).
+Nós acompanhe no [Facebook](http:facebook.com/helppetpage)
 
 ### Execute o sistema localmente
 
 1- Clone o projeto
 ```Shell
-git clone https://github.com/persapiens/conta.git
+git clone https://github.com/AnneGoncalo/helppettest.git
 ```
 
 2- Construa a aplicação
@@ -26,7 +26,7 @@ mvn clean install
 
 3- Execute a aplicação
 ```Shell
-java -jar target/conta-1.0-SNAPSHOT.jar
+java -jar target/helppet-1.0-SNAPSHOT.jar
 ```
 
 4- Acesse a página da aplicação em **http://localhost:8080**
