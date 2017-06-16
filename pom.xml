@@ -230,28 +230,28 @@
     </profiles>
 
     <name>helppet</name>
-    <description>Helppet - Projeto de Desenvolvimento de Sistemas Corporativos</description>
-    <url>https://gitlab.devops.ifrn.edu.br/corporativo/apelidador</url>
+    <description>Help Pet - Plataforma de Ajuda Animal</description>
+    <url>https://gitlab.devops.ifrn.edu.br/tads.cnat/pdscorporativo/2017.1/helppet</url>
     <inceptionYear>2017</inceptionYear>
 
     <!-- Issue Managment -->
     <issueManagement>
         <system>Gitlab</system>
-        <url>https://gitlab.devops.ifrn.edu.br/corporativo/apelidador/issues</url>
+        <url>https://gitlab.devops.ifrn.edu.br/groups/tads.cnat/pdscorporativo/2017.1/helppet/issues</url>
     </issueManagement>
 
     <!-- SCM -->
     <scm>
-        <connection>scm:git:https://20151014040001@gitlab.devops.ifrn.edu.br/corporativo/apelidador.git</connection>
-        <developerConnection>scm:git:https://20151014040001@gitlab.devops.ifrn.edu.br/corporativo/apelidador.git</developerConnection>
-        <url>scm:git:https://20151014040001@gitlab.devops.ifrn.edu.br/corporativo/apelidador.git</url>
+        <connection>scm:git:https://20151014040002@gitlab.devops.ifrn.edu.br/tads.cnat/pdscorporativo/2017.1/helppet/api.git</connection>
+        <developerConnection>scm:git:https://20151014040002@gitlab.devops.ifrn.edu.br/tads.cnat/pdscorporativo/2017.1/helppet/api.git</developerConnection>
+        <url>scm:git:https://20151014040002@gitlab.devops.ifrn.edu.br/tads.cnat/pdscorporativo/2017.1/helppet/api.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <!-- Organization -->
     <organization>
-        <name>Apelidador</name>
-        <url>https://gitlab.devops.ifrn.edu.br/corporativo/apelidador</url>
+        <name>HelpPet</name>
+        <url>https://gitlab.devops.ifrn.edu.br/tads.cnat/pdscorporativo/2017.1/helppet</url>
     </organization>
     
     <developers>
@@ -268,21 +268,21 @@
             <timezone>-3</timezone>
         </developer>
         <developer>
-            <id>josafa</id>
-            <name>Josafá Romão Rebouças Rodrigues</name>
-            <email>annegoncalo@gmail.com</email>
+            <id>camila</id>
+            <name>Camila Jordana</name>
+            <email>camila@email.com</email>
             <timezone>-3</timezone>
         </developer>
         <developer>
-            <id>nirvana</id>
-            <name>Nirvana Dantas</name>
-            <email>nirvanadesara@gmail.com</email>
+            <id>helora</id>
+            <name>Helora Dana</name>
+            <email>helora@email.com</email>
             <timezone>-3</timezone>
         </developer>
         <developer>
-            <id>dailson</id>
-            <name>Dailson Gomes de Assis</name>
-            <email>dailson.gomes@academico.ifrn.edu.br</email>
+            <id>tatiana</id>
+            <name>Tatiana</name>
+            <email>tatiana@email.com</email>
             <timezone>-3</timezone>
         </developer>
     </developers>
