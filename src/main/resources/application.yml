@@ -21,7 +21,7 @@ info:
   url: @project.url@
   version: @project.version@
 server:
-  port: 7070
+  port: 8080
 endpoints:
   shutdown:
     enabled: true
