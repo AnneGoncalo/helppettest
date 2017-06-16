@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @author anne
  */
 @RestController
-@RequestMapping("/denuncia")
 public class DenunciaService {
     
+    @RequestMapping("/denuncia")
     public List<Denuncia> Listar(){
 	DenunciaVL servico = new DenunciaVL();
 	return servico.ListarDenuncia();
