@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package br.edu.ifrn.apelidador;
+package br.edu.ifrn.helppet;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+/**
+ * Conta Configuration class.
+ * @author Marcelo Fernandes
+ */
+@SpringBootApplication
+public class Helppet {
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Apelidador.class)
-public class ApelidadorApplicationIT {
+    protected Helppet() {
+    }
 
-	@Test
-	public void contextLoads() {
-	}
 }

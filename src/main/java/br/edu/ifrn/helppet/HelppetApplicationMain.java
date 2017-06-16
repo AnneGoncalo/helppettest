@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package br.edu.ifrn.apelidador;
+package br.edu.ifrn.helppet;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
- * Conta Configuration class.
+ * Classe main.
  * @author Marcelo Fernandes
  */
-@SpringBootApplication
-public class Apelidador {
+public class HelppetApplicationMain {
 
-    protected Apelidador() {
-    }
+	protected HelppetApplicationMain() {
+	}
+
+	public static void main(String[] args) {
+		new SpringApplicationBuilder()
+			.sources(Helppet.class)
+			.run(args);
+	}
 
 }

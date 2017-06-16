@@ -14,23 +14,19 @@
  * limitations under the License.
  */
 
-package br.edu.ifrn.apelidador;
+package br.edu.ifrn.helppet;
 
-import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-/**
- * Classe main.
- * @author Marcelo Fernandes
- */
-public class ApelidadorApplicationMain {
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-	protected ApelidadorApplicationMain() {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = Helppet.class)
+public class HelppetApplicationIT {
+
+	@Test
+	public void contextLoads() {
 	}
-
-	public static void main(String[] args) {
-		new SpringApplicationBuilder()
-			.sources(Apelidador.class)
-			.run(args);
-	}
-
 }

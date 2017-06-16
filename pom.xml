@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>br.edu.ifrn</groupId>
-    <artifactId>apelidador</artifactId>
+    <artifactId>helppetteste</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -21,7 +21,7 @@
         <duplicate.ignoredClassPattern>javax.persistence.(SynchronizationType|Persistence(Context|ContextType|Contexts|Property|Unit|Units))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>(changelog.txt|application.yml)</duplicate.ignoredResourcePattern>
         <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>        
-        <checkstyle.excludes>br/edu/ifrn/apelidador/dominio/Q*</checkstyle.excludes>
+        <checkstyle.excludes>br/edu/ifrn/helppet/dominio/Q*</checkstyle.excludes>
         <cobertura.totalLineRate>34</cobertura.totalLineRate>
         <cobertura.packageLineRate>0</cobertura.packageLineRate>
         <cobertura.lineRate>0</cobertura.lineRate>
@@ -180,8 +180,8 @@
                 <configuration>
                     <instrumentation>
                         <excludes>
-                            <exclude>br/edu/ifrn/apelidador/ApelidadorApplicationMain.class</exclude>
-                            <exclude>br/edu/ifrn/apelidador/dominio/Q*.class</exclude>
+                            <exclude>br/edu/ifrn/helppet/HelppetApplicationMain.class</exclude>
+                            <exclude>br/edu/ifrn/helppet/dominio/Q*.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>            
@@ -229,8 +229,8 @@
         </profile>
     </profiles>
 
-    <name>apelidador</name>
-    <description>Apelidador - Projeto de Desenvolvimento de Sistemas Corporativos</description>
+    <name>helppet</name>
+    <description>Helppet - Projeto de Desenvolvimento de Sistemas Corporativos</description>
     <url>https://gitlab.devops.ifrn.edu.br/corporativo/apelidador</url>
     <inceptionYear>2017</inceptionYear>
 
