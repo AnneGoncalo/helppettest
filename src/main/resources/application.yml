@@ -1,8 +1,8 @@
 spring: 
   datasource: 
-    url: postgres://fowkymuahkxbjn:803a5bb75c0696d04f0ee46963a6284e733376d15fed66cffa57b932c2db7f0b@ec2-54-225-68-71.compute-1.amazonaws.com:5432/daargdimuotr6d
-    username: fowkymuahkxbjn
-    password: 803a5bb75c0696d04f0ee46963a6284e733376d15fed66cffa57b932c2db7f0b
+    url: postgres://qzcdlrvfupzbcg:a2ce7fafcedc4e04e10b91b23be301d3a9b88f113942aea9362ee2ae1de66906@ec2-50-19-83-146.compute-1.amazonaws.com:5432/d3b1067m8lmor8
+    username: qzcdlrvfupzbcg
+    password: a2ce7fafcedc4e04e10b91b23be301d3a9b88f113942aea9362ee2ae1de66906
 # Number of ms to wait before throwing an exception if no connection is available.
     max-wait: 1000
 # Maximum number of active connections that can be allocated from this pool at the same time.
