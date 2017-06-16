@@ -22,16 +22,3 @@ info:
   version: @project.version@
 server:
   port: 8080
-endpoints:
-  shutdown:
-    enabled: true
-    sensitive: true
-    id: sair
-security:
-  user:
-    name: admin
-    password: secret
-management:
-  security:
-    enabled: true
-    roles: SUPERUSER

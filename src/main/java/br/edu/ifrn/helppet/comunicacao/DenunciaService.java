@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DenunciaService {
     
-    @RequestMapping("/denuncia")
+    @RequestMapping("/rest/denuncia")
     public List<Denuncia> Listar(){
 	DenunciaVL servico = new DenunciaVL();
 	return servico.ListarDenuncia();
