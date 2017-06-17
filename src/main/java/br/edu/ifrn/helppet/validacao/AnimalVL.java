@@ -13,6 +13,7 @@ public class AnimalVL {
     private final ArrayList<String> especie = new ArrayList<>();
     private final ArrayList<String> idade = new ArrayList<>();
     private final ArrayList<String> sexo = new ArrayList<>();
+    private final ArrayList<String> raca = new ArrayList<>();
 
     public AnimalVL() {
         // Tipos válidos
@@ -32,7 +33,27 @@ public class AnimalVL {
         // Sexo válido
         sexo.add("F");
         sexo.add("M");
+        // Raças válidas
+        raca.add("Viralata");
+        raca.add("SRD");
+        raca.add("Outra");
 
+    }
+
+    private String validarRaca(Animal a) {
+        if (a.getRaca() != null) {
+            if (!a.getRaca().isEmpty()) {
+                if (raca.contains(a.getRaca())) {
+                    return "OK";
+                } else {
+                    return "Campo inválido: " + a.getRaca();
+                }
+            } else {
+                return "Campo vazio";
+            }
+        } else {
+            return "Campo nulo";
+        }
     }
 
     private String validarSexo(Animal a) {
