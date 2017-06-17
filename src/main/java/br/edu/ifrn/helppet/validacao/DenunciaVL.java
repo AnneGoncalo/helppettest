@@ -55,7 +55,7 @@ public class DenunciaVL {
 	    return "Objeto nulo";
 	}
     }
-
+    
     private String validarTitulo(Denuncia d) {
         if (d.getTitulo() != null) {
             if (!d.getTitulo().isEmpty()) {
