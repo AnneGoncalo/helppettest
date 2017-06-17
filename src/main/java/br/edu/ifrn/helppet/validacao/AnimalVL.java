@@ -44,6 +44,55 @@ public class AnimalVL {
 
         dao = new UsuariosCadastradosGambiarra();
     }
+    
+    
+    public String cadastrarAnimal(Animal a){
+        if(a != null){
+            if(!a.isEmpty()){
+                if(validarResponsavel(a).equals("OK")){
+                    if(validarLocal(a).equals("OK")){ 
+                        if(validarDescricao(a).equals("OK")){
+                            if(validarRaca(a).equals("OK")){
+                                if(validarSexo(a).equals("OK")){
+                                    if(validarIdade(a).equals("OK")){
+                                        if(validarEspecie(a).equals("OK")){
+                                            if(validarTipo(a).equals("OK")){
+                                                if(validarNome(a).equals("OK")){
+                                                    return "Cadastrado com sucesso";
+                                                } else {
+                                                    return validarNome(a);
+                                                }
+                                            } else {
+                                                return validarTipo(a);
+                                            }
+                                        } else {
+                                            return validarEspecie(a);
+                                        }
+                                    } else {
+                                        return validarIdade(a);
+                                    }
+                                } else {
+                                    return validarSexo(a);
+                                }
+                            } else {
+                                return validarRaca(a);
+                            }
+                        } else {
+                            return validarDescricao(a);
+                        }
+                    } else {
+                        return validarLocal(a);
+                    }
+                } else {
+                    return validarResponsavel(a);
+                }
+            } else {
+                return "Campos vazios";
+            }
+        } else {
+            return "Objeto nulo";
+        }
+    }
 
     
     private String validarResponsavel(Animal a) {

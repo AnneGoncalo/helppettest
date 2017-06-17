@@ -36,6 +36,8 @@ public class Animal {
     private Usuario responsavel;
     private String localizacao;
 
-   
+    public boolean isEmpty(){
+	return !(this.nomeAnimal != null && this.especie != null && this.raca != null && this.idade != null && this.sexo != null && this.tipoAnimal != null && this.responsavel != null && this.localizacao != null);
+    }
     
 }
