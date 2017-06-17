@@ -1,13 +1,41 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Animal;
+import java.util.ArrayList;
 
 /**
  *
  * @author camila
  */
 public class AnimalVL {
+    
+    
+    private final ArrayList<String> tipo = new ArrayList<>();
+    
+    public AnimalVL(){
+        // Tipos válidos
+        tipo.add("Adoção");        
+        tipo.add("Perdido");     
+        tipo.add("Resgate");           
+    }
 
+    
+    private String validarTipo(Animal a){
+        if(a.getTipoAnimal() != null){
+            if(!a.getTipoAnimal().isEmpty()){
+                if(tipo.contains(a.getTipoAnimal())){
+                    return "OK";
+                } else {
+                    return "Campo inválido: "+a.getTipoAnimal();
+                }
+            } else {
+                return "Campo vazio";
+            }           
+        } else {
+            return "Campo nulo";
+        }
+    }
+    
     private String validarNome(Animal a) {
         int cont = 0;
         if (a.getNomeAnimal() == null) {
