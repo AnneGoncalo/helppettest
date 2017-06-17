@@ -30,6 +30,8 @@ public class Usuario {
     private String localizacao;
     private String telefone;
     private int idPermissao;
+    private int idUsuario;
+    private String cpfcnpj;
     
     
 }

@@ -1,6 +1,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Animal;
+import br.edu.ifrn.helppet.persistencia.UsuariosCadastradosGambiarra;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,9 @@ public class AnimalVL {
     private final ArrayList<String> idade = new ArrayList<>();
     private final ArrayList<String> sexo = new ArrayList<>();
     private final ArrayList<String> raca = new ArrayList<>();
+    
+    
+    UsuariosCadastradosGambiarra dao;
 
     public AnimalVL() {
         // Tipos válidos
@@ -38,8 +42,42 @@ public class AnimalVL {
         raca.add("SRD");
         raca.add("Outra");
 
+        dao = new UsuariosCadastradosGambiarra();
     }
 
+    
+    private String validarResponsavel(Animal a) {
+        if(a.getResponsavel() != null){
+            if(dao.ListarUsuarios().contains(a.getResponsavel())){
+                if(a.getResponsavel().getNomeUsuario() != null){
+                    if(a.getResponsavel().getEmail() != null){
+                        if(a.getResponsavel().getCpfcnpj() != null){
+                            if(a.getResponsavel().getLocalizacao() != null){
+                                if(a.getResponsavel().getTelefone() != null){
+                                    return "OK";
+                                } else {
+                                    return "Telefone do responsável não pode ser nulo";
+                                }
+                            } else {
+                                return "Localização do responsável não pode ser nulo";
+                            }
+                        } else {
+                            return "CPF do responsável não pode ser nulo";
+                        }
+                    } else {
+                        return "E-mail do responsável não pode ser nulo.";
+                    }
+                } else {
+                    return "Nome do responsável não pode ser nulo";
+                }
+            } else {
+                return "Usuário não cadastrado";
+            }
+        } else{
+            return "O responsável não pode ser nulo";
+        }
+    }
+    
     private String validarLocal(Animal a) {
         if (a.getLocalizacao() != null) {
             if (!a.getLocalizacao().isEmpty()) {
