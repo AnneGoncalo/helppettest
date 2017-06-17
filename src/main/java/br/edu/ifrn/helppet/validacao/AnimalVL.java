@@ -8,20 +8,20 @@ import java.util.ArrayList;
  * @author camila
  */
 public class AnimalVL {
-    
-    
+
     private final ArrayList<String> tipo = new ArrayList<>();
     private final ArrayList<String> especie = new ArrayList<>();
     private final ArrayList<String> idade = new ArrayList<>();
-    
-    public AnimalVL(){
+    private final ArrayList<String> sexo = new ArrayList<>();
+
+    public AnimalVL() {
         // Tipos válidos
-        tipo.add("Adoção");        
-        tipo.add("Perdido");     
-        tipo.add("Resgate"); 
+        tipo.add("Adoção");
+        tipo.add("Perdido");
+        tipo.add("Resgate");
         // Espécies válidas
-        especie.add("Gato");        
-        especie.add("Cachorro");     
+        especie.add("Gato");
+        especie.add("Cachorro");
         especie.add("Outra");
         // Idades válidas
         idade.add("0 a 6 meses");
@@ -29,57 +29,76 @@ public class AnimalVL {
         idade.add("1 a 2 anos");
         idade.add("2 a 5 anos");
         idade.add("Mais de 5 anos");
+        // Sexo válido
+        sexo.add("F");
+        sexo.add("M");
+
     }
 
-    
-    private String validarIdade(Animal a){
-        if(a.getIdade() != null){
-            if(!a.getIdade().isEmpty()){
-                if(tipo.contains(a.getIdade())){
+    private String validarSexo(Animal a) {
+        if (a.getSexo() != null) {
+            if (!a.getSexo().isEmpty()) {
+                if (sexo.contains(a.getSexo())) {
                     return "OK";
                 } else {
-                    return "Campo inválido: "+a.getIdade();
+                    return "Campo inválido: " + a.getSexo();
                 }
             } else {
                 return "Campo vazio";
-            }           
+            }
         } else {
             return "Campo nulo";
         }
     }
-    
-    private String validarEspecie(Animal a){
-        if(a.getEspecie() != null){
-            if(!a.getEspecie().isEmpty()){
-                if(tipo.contains(a.getEspecie())){
+
+    private String validarIdade(Animal a) {
+        if (a.getIdade() != null) {
+            if (!a.getIdade().isEmpty()) {
+                if (idade.contains(a.getIdade())) {
                     return "OK";
                 } else {
-                    return "Campo inválido: "+a.getEspecie();
+                    return "Campo inválido: " + a.getIdade();
                 }
             } else {
                 return "Campo vazio";
-            }           
+            }
         } else {
             return "Campo nulo";
         }
     }
-    
-    private String validarTipo(Animal a){
-        if(a.getTipoAnimal() != null){
-            if(!a.getTipoAnimal().isEmpty()){
-                if(tipo.contains(a.getTipoAnimal())){
+
+    private String validarEspecie(Animal a) {
+        if (a.getEspecie() != null) {
+            if (!a.getEspecie().isEmpty()) {
+                if (especie.contains(a.getEspecie())) {
                     return "OK";
                 } else {
-                    return "Campo inválido: "+a.getTipoAnimal();
+                    return "Campo inválido: " + a.getEspecie();
                 }
             } else {
                 return "Campo vazio";
-            }           
+            }
         } else {
             return "Campo nulo";
         }
     }
-    
+
+    private String validarTipo(Animal a) {
+        if (a.getTipoAnimal() != null) {
+            if (!a.getTipoAnimal().isEmpty()) {
+                if (tipo.contains(a.getTipoAnimal())) {
+                    return "OK";
+                } else {
+                    return "Campo inválido: " + a.getTipoAnimal();
+                }
+            } else {
+                return "Campo vazio";
+            }
+        } else {
+            return "Campo nulo";
+        }
+    }
+
     private String validarNome(Animal a) {
         int cont = 0;
         if (a.getNomeAnimal() == null) {
