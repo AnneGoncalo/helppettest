@@ -12,7 +12,7 @@ public class AnimalVL {
     
     private final ArrayList<String> tipo = new ArrayList<>();
     private final ArrayList<String> especie = new ArrayList<>();
-    
+    private final ArrayList<String> idade = new ArrayList<>();
     
     public AnimalVL(){
         // Tipos válidos
@@ -23,8 +23,30 @@ public class AnimalVL {
         especie.add("Gato");        
         especie.add("Cachorro");     
         especie.add("Outra");
+        // Idades válidas
+        idade.add("0 a 6 meses");
+        idade.add("6 a 12 meses");
+        idade.add("1 a 2 anos");
+        idade.add("2 a 5 anos");
+        idade.add("Mais de 5 anos");
     }
 
+    
+    private String validarIdade(Animal a){
+        if(a.getIdade() != null){
+            if(!a.getIdade().isEmpty()){
+                if(tipo.contains(a.getIdade())){
+                    return "OK";
+                } else {
+                    return "Campo inválido: "+a.getIdade();
+                }
+            } else {
+                return "Campo vazio";
+            }           
+        } else {
+            return "Campo nulo";
+        }
+    }
     
     private String validarEspecie(Animal a){
         if(a.getEspecie() != null){
