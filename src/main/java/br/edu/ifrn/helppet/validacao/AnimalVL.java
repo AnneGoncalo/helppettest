@@ -40,6 +40,38 @@ public class AnimalVL {
 
     }
 
+    private String validarLocal(Animal a) {
+        if (a.getLocalizacao() != null) {
+            if (!a.getLocalizacao().isEmpty()) {
+                if (a.getLocalizacao().length() <= 255) {
+                    return "OK";
+                } else {
+                    return "Tamanho maior que o esperado: " + a.getLocalizacao().length();
+                }
+            } else {
+                return "Localização vazia";
+            }
+        } else {
+            return "Campo nulo";
+        }
+    }
+
+    private String validarDescricao(Animal a) {
+        if (a.getDescricaoAnimal() != null) {
+            if (!a.getDescricaoAnimal().isEmpty()) {
+                if (a.getDescricaoAnimal().length() <= 255) {
+                    return "OK";
+                } else {
+                    return "Tamanho maior que o esperado: " + a.getDescricaoAnimal().length();
+                }
+            } else {
+                return "Descrição vazio";
+            }
+        } else {
+            return "Campo nulo";
+        }
+    }
+
     private String validarRaca(Animal a) {
         if (a.getRaca() != null) {
             if (!a.getRaca().isEmpty()) {
