@@ -11,14 +11,36 @@ public class AnimalVL {
     
     
     private final ArrayList<String> tipo = new ArrayList<>();
+    private final ArrayList<String> especie = new ArrayList<>();
+    
     
     public AnimalVL(){
         // Tipos válidos
         tipo.add("Adoção");        
         tipo.add("Perdido");     
-        tipo.add("Resgate");           
+        tipo.add("Resgate"); 
+        // Espécies válidas
+        especie.add("Gato");        
+        especie.add("Cachorro");     
+        especie.add("Outra");
     }
 
+    
+    private String validarEspecie(Animal a){
+        if(a.getEspecie() != null){
+            if(!a.getEspecie().isEmpty()){
+                if(tipo.contains(a.getEspecie())){
+                    return "OK";
+                } else {
+                    return "Campo inválido: "+a.getEspecie();
+                }
+            } else {
+                return "Campo vazio";
+            }           
+        } else {
+            return "Campo nulo";
+        }
+    }
     
     private String validarTipo(Animal a){
         if(a.getTipoAnimal() != null){
