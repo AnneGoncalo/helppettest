@@ -39,4 +39,6 @@ public class PessoaFisica {
     
     private String cpf;
     
+    private Usuario usuario;
+    
 }

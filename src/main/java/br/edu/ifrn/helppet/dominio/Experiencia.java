@@ -33,4 +33,6 @@ public class Experiencia {
     
     private Date cadastro;
     
+    private Usuario usuario;
+    
 }

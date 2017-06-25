@@ -41,4 +41,6 @@ public class PessoaJuridica {
     
     private String funcionamento;
     
+    private Usuario usuario;
+    
 }

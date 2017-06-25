@@ -44,5 +44,7 @@ public class Anuncio {
     private String descricao;
     
     private String foto;
+    
+    private Usuario responsavel;
 
 }

@@ -44,4 +44,6 @@ public class Estoque {
     private double qtdAtual;
     
     private double qtdIdeal;
+    
+    private Usuario usuario;
 }
