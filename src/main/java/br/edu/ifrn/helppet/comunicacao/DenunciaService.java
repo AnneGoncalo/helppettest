@@ -6,7 +6,9 @@ import com.google.gson.Gson;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest/denuncia")
 public class DenunciaService {
 
-    @GET
+    @RequestMapping(method = RequestMethod.GET)
     public List<Denuncia> Listar() {
         DenunciaVL servico = new DenunciaVL();
         return servico.ListarDenuncia();
     }
 
-    @POST
-    public String cadastrarDenuncia(String json) {
+    @RequestMapping(method = RequestMethod.POST)
+    public String cadastrarDenuncia(@RequestBody String json) {
         Gson gson = new Gson();
         Denuncia a = gson.fromJson(json, Denuncia.class);
         DenunciaVL servico = new DenunciaVL();
