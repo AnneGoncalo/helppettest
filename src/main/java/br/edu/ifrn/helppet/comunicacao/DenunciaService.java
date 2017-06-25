@@ -27,10 +27,10 @@ public class DenunciaService {
 
     @RequestMapping(method = RequestMethod.POST)
     public String cadastrarDenuncia(@RequestBody String json) {
-        Gson gson = new Gson();
-        Denuncia a = gson.fromJson(json, Denuncia.class);
-        DenunciaVL servico = new DenunciaVL();
-        servico.CadastrarDenuncia(a);
+//        Gson gson = new Gson();
+//        Denuncia a = gson.fromJson(json, Denuncia.class);
+//        DenunciaVL servico = new DenunciaVL();
+//        servico.CadastrarDenuncia(a);
         return "Ok";
     }
 }
