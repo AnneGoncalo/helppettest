@@ -44,6 +44,8 @@ public class Animal {
     private boolean status;
     
     private String localizacao;
+    
+    private Usuario responsavel;
 
     public boolean isEmpty(){
 	return !(this.nome != null && this.tipo != null && this.especie != null && this.raca != null && this.idade != null && this.sexo != null && this.localizacao != null);

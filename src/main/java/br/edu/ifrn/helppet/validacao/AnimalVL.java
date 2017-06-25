@@ -3,6 +3,7 @@ package br.edu.ifrn.helppet.validacao;
 import br.edu.ifrn.helppet.dominio.Animal;
 import br.edu.ifrn.helppet.persistencia.UsuariosCadastradosGambiarra;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -10,11 +11,11 @@ import java.util.ArrayList;
  */
 public class AnimalVL {
 
-    private final ArrayList<String> tipo = new ArrayList<>();
-    private final ArrayList<String> especie = new ArrayList<>();
-    private final ArrayList<String> idade = new ArrayList<>();
-    private final ArrayList<String> sexo = new ArrayList<>();
-    private final ArrayList<String> raca = new ArrayList<>();
+    private final List<String> tipo = new ArrayList();
+    private final List<String> especie = new ArrayList();
+    private final List<String> idade = new ArrayList();
+    private final List<String> sexo = new ArrayList();
+    private final List<String> raca = new ArrayList();
     
     
     UsuariosCadastradosGambiarra dao;
@@ -98,21 +99,17 @@ public class AnimalVL {
     private String validarResponsavel(Animal a) {
         if(a.getResponsavel() != null){
             if(dao.ListarUsuarios().contains(a.getResponsavel())){
-                if(a.getResponsavel().getNomeUsuario() != null){
+                if(a.getResponsavel().getNome() != null){
                     if(a.getResponsavel().getEmail() != null){
-                        if(a.getResponsavel().getCpfcnpj() != null){
-                            if(a.getResponsavel().getLocalizacao() != null){
-                                if(a.getResponsavel().getTelefone() != null){
-                                    return "OK";
-                                } else {
-                                    return "Telefone do responsável não pode ser nulo";
-                                }
-                            } else {
-                                return "Localização do responsável não pode ser nulo";
-                            }
-                        } else {
-                            return "CPF do responsável não pode ser nulo";
-                        }
+			if(a.getResponsavel().getLocalizacao() != null){
+			    if(a.getResponsavel().getTelefone() != null){
+				return "OK";
+			    } else {
+				return "Telefone do responsável não pode ser nulo";
+			    }
+			} else {
+			    return "Localização do responsável não pode ser nulo";
+			}
                     } else {
                         return "E-mail do responsável não pode ser nulo.";
                     }
@@ -144,12 +141,12 @@ public class AnimalVL {
     }
 
     private String validarDescricao(Animal a) {
-        if (a.getDescricaoAnimal() != null) {
-            if (!a.getDescricaoAnimal().isEmpty()) {
-                if (a.getDescricaoAnimal().length() <= 255) {
+        if (a.getDescricao() != null) {
+            if (!a.getDescricao().isEmpty()) {
+                if (a.getDescricao().length() <= 255) {
                     return "OK";
                 } else {
-                    return "Tamanho maior que o esperado: " + a.getDescricaoAnimal().length();
+                    return "Tamanho maior que o esperado: " + a.getDescricao().length();
                 }
             } else {
                 return "Descrição vazio";
@@ -224,12 +221,12 @@ public class AnimalVL {
     }
 
     private String validarTipo(Animal a) {
-        if (a.getTipoAnimal() != null) {
-            if (!a.getTipoAnimal().isEmpty()) {
-                if (tipo.contains(a.getTipoAnimal())) {
+        if (a.getTipo() != null) {
+            if (!a.getTipo().isEmpty()) {
+                if (tipo.contains(a.getTipo())) {
                     return "OK";
                 } else {
-                    return "Campo inválido: " + a.getTipoAnimal();
+                    return "Campo inválido: " + a.getTipo();
                 }
             } else {
                 return "Campo vazio";
@@ -241,13 +238,13 @@ public class AnimalVL {
 
     private String validarNome(Animal a) {
         int cont = 0;
-        if (a.getNomeAnimal() == null) {
-            a.setNomeAnimal("Pet " + a.getIdAnimal());
+        if (a.getNome() == null) {
+            a.setNome("Pet " );
             return "OK";
         } else {
-            if (a.getNomeAnimal().length() >= 3 && a.getNomeAnimal().length() <= 30) {
-                for (int i = 0; i < a.getNomeAnimal().length(); i++) {
-                    if (Character.isLetter(a.getNomeAnimal().charAt(i))) {
+            if (a.getNome().length() >= 3 && a.getNome().length() <= 30) {
+                for (int i = 0; i < a.getNome().length(); i++) {
+                    if (Character.isLetter(a.getNome().charAt(i))) {
                         cont++;
                     }
                 }
@@ -257,7 +254,7 @@ public class AnimalVL {
                     return "O nome do animal deve ter no mínimo 3 letras";
                 }
             } else {
-                if (a.getNomeAnimal().length() < 3) {
+                if (a.getNome().length() < 3) {
                     return "O nome do animal deve conter no mínimo 3 caracteres";
                 } else {
                     return "O nome do animal deve conter no máximo 30 caracteres";

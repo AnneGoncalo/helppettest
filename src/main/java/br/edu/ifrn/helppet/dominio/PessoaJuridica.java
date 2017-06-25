@@ -31,12 +31,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "funcionamento")
 @Builder
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class PessoaFisica {
+public class PessoaJuridica {
     
-    private String cpf;
+    private String cnpj;
+    
+    private String funcionamento;
     
 }
