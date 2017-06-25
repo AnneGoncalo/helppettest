@@ -49,4 +49,6 @@ public class Evento {
     
     private String foto;
     
+    private Usuario responsavel;
+    
 }

@@ -45,5 +45,9 @@ public class Encontro {
     private boolean editado;
     
     private boolean statusEncontro;
+    
+    private Animal animal;
+    
+    private Usuario adotante;
 
 }
