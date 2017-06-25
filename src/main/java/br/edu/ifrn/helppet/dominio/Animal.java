@@ -1,43 +1,52 @@
 package br.edu.ifrn.helppet.dominio;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 /**
  *
- * @author camila
+ * @author anne
  */
 @Getter
 @Setter
-@ToString(exclude = "fotoAnimal")
-@EqualsAndHashCode(exclude = "fotoAnimal")
-@RequiredArgsConstructor
+@ToString(exclude = {"foto", "cadastro"})
+@EqualsAndHashCode(exclude = {"descricao", "foto", "cadastro", "localizacao"})
+@Builder
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Animal {
 
-    private int idAnimal;
-    private String nomeAnimal;
+    private String nome;
+    
+    private String tipo;
+    
     private String especie;
+    
     private String raca;
+    
     private String idade;
+    
     private String sexo;
-    private String descricaoAnimal;
-    private String fotoAnimal;
-    private String tipoAnimal;
+    
+    private String descricao;
+    
+    private String foto;
+    
     private Date cadastro;
-    private boolean statusAnimal;
-    private Usuario responsavel;
+    
+    private boolean status;
+    
     private String localizacao;
 
     public boolean isEmpty(){
-	return !(this.nomeAnimal != null && this.especie != null && this.raca != null && this.idade != null && this.sexo != null && this.tipoAnimal != null && this.responsavel != null && this.localizacao != null);
+	return !(this.nome != null && this.tipo != null && this.especie != null && this.raca != null && this.idade != null && this.sexo != null && this.localizacao != null);
     }
     
 }
