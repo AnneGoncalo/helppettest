@@ -17,6 +17,12 @@ public class DenunciaPers {
     }
     
     public List<Denuncia> Listar(){
+        Denuncia a = new Denuncia();
+	a.setTitulo("denuncia A");
+	a.setTipo("Outro");
+	a.setDescricao("descrição da denuncia A");
+	a.setLocalizacao("Natal, RN");
+	lista.add(a);
 	return lista;
     }
     

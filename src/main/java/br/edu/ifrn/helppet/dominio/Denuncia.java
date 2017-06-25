@@ -5,10 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -18,8 +21,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(exclude = "foto")
-@EqualsAndHashCode(exclude = {"tipo", "foto"})
-@RequiredArgsConstructor
+@EqualsAndHashCode(exclude = {"descricao", "foto"})
+@Builder
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Denuncia {
     
     private String titulo;
