@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,7 @@ public class DenunciaService {
 //        Denuncia a = gson.fromJson(json, Denuncia.class);
 //        DenunciaVL servico = new DenunciaVL();
 //        servico.CadastrarDenuncia(a);
+          JSONParser parser = new JSONParser();
         return "Ok";
     }
 }
