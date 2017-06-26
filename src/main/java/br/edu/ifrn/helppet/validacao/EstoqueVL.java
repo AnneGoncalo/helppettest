@@ -70,13 +70,18 @@ public class EstoqueVL {
     
     private String validarQtdAtual(Estoque e){
         if(e.getQtdAtual() < 0){
-            return "OK";
+            String campoVazio = String.valueOf(e.getQtdAtual());
+            if(!campoVazio.isEmpty()){
+                return "OK";
+            } else {
+                return "O campo Quantidade Atual não pode estar vazio";
+            }
         } else {
-            return "O campo Quantidade Atual não pode ser negativa";
+            return "O campo Quantidade Atual não pode ser negativo";
         }
     }
     
-    
+      
     
 
 }
