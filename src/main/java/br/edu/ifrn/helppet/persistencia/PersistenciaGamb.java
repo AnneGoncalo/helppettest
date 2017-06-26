@@ -57,6 +57,16 @@ public class PersistenciaGamb {
         return listaDeAnimais;
     }
     
+    public List<Denuncia> listarPorTipo(String tipo){
+        List<Denuncia> lista = new ArrayList();
+        for(Denuncia d : listaDeDenuncias){
+            if(d.getTipo() == tipo){
+                lista.add(d);
+            }
+        }
+        return lista;
+    }
+    
     public void cadastrarDenuncia(Denuncia denuncia){
 	listaDeDenuncias.add(denuncia);
     }

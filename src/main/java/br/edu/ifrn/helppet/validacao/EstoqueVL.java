@@ -35,6 +35,7 @@ public class EstoqueVL {
         
     }
 
+            
     private String validarNome(Estoque e) {
         if (e.getProduto() != null) {
             if (!e.getProduto().isEmpty()) {
@@ -81,7 +82,19 @@ public class EstoqueVL {
         }
     }
     
-      
+
+    private String validarQtdIdeal(Estoque e){
+        if(e.getQtdIdeal() < 0){
+            String campoVazio = String.valueOf(e.getQtdIdeal());
+            if(!campoVazio.isEmpty()){
+                return "OK";
+            } else {
+                return "O campo Quantidade Ideal não pode estar vazio";
+            }
+        } else {
+            return "O campo Quantidade Ideal não pode ser negativo";
+        }
+    }
     
 
 }
