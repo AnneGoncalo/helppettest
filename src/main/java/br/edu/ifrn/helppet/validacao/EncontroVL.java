@@ -3,9 +3,7 @@ package br.edu.ifrn.helppet.validacao;
 import br.edu.ifrn.helppet.dominio.Encontro;
 import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
-import static java.util.Date.parse;
 
 /**
  *
@@ -43,10 +41,10 @@ public class EncontroVL {
             if (e.getDataHorario().after(dataAtual)) {
                 return "OK";
             } else {
-                return "Data inválida";
+                return "Por favor, insira uma data futura";
             }
         } catch (Exception ex) {
-            return "Data inválida";
+            return "Data inválida. Por favor, insira data válida";
         }
     }
 
