@@ -18,6 +18,36 @@ public class EncontroVL {
         dao = new PersistenciaGamb();
     }
 
+    
+    public String cadastrarEncontro(Encontro e){
+        if(e != null){
+            if(!e.isEmpty()){
+                if(validarAnimal(e).equals("OK")){
+                    if(validarData(e).equals("OK")){
+                        if(validacaoLocal(e).equals("OK")){
+                            if(validarAdotante(e).equals("OK")){
+                                dao.cadastrarEncontro(e);
+                                return "Cadastrado com sucesso";
+                            } else {
+                                return validarAdotante(e);
+                            }
+                        } else {
+                            return validacaoLocal(e);
+                        }
+                    } else {
+                        return validarData(e);
+                    }
+                } else {
+                    return validarAnimal(e);
+                }
+            } else {
+                return "Campos vazios";
+            }
+        } else {
+            return "Objeto nulo";
+        }
+    }
+    
     private String validarAnimal(Encontro e) {
         if (e.getAnimal() != null) {
             if (dao.ListarAnimais().contains(e.getAnimal())) {

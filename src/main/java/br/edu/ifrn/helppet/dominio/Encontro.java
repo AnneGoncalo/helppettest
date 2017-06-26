@@ -50,4 +50,8 @@ public class Encontro {
     
     private PessoaFisica adotante;
 
+    public boolean isEmpty() {
+        return !(this.animal != null && this.adotante != null && this.localizacao != null && this.dataHorario != null);
+    }
+
 }
