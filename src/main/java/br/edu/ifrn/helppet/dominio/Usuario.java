@@ -37,4 +37,6 @@ public class Usuario {
     
     private String telefone;
     
+    private Permissao permissao;
+    
 }
