@@ -48,6 +48,6 @@ public class Encontro {
     
     private Animal animal;
     
-    private Usuario adotante;
+    private PessoaFisica adotante;
 
 }

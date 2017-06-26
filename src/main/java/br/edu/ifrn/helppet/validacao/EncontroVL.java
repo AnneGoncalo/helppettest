@@ -48,4 +48,52 @@ public class EncontroVL {
         }
     }
 
+    private String validacaoLocal(Encontro e) {
+        if (e.getLocalizacao() != null) {
+            if (!e.getLocalizacao().isEmpty()) {
+                if (e.getLocalizacao().length() <= 255) {
+                    return "OK";
+                } else {
+                    return "Tamanho maior que o esperado: " + e.getLocalizacao().length();
+                }
+            } else {
+                return "Localização está vazia";
+            }
+        } else {
+            return "Local do encontro é um campo obrigatório";
+        }
+    }
+
+    private String validarAdotante(Encontro e) {
+        if (e.getAdotante() != null) {
+            if (dao.ListarPF().contains(e.getAdotante())) {
+                if (e.getAdotante().getUsuario().getNome() != null) {
+                    if (e.getAdotante().getUsuario().getEmail() != null) {
+                        if (e.getAdotante().getCpf() != null) {
+                            if (e.getAdotante().getUsuario().getLocalizacao() != null) {
+                                if (e.getAdotante().getUsuario().getTelefone() != null) {
+                                    return "OK";
+                                } else {
+                                    return "O adotante deve informar o número de telefone";
+                                }
+                            } else {
+                                return "O adotante tem que ter uma localização";
+                            }
+                        } else {
+                            return "CPF do adotante não pode ser nulo";
+                        }
+                    } else {
+                        return "E-mail do adotante não pode ser nulo";
+                    }
+                } else {
+                    return "Nome do adotante não pode ser nulo";
+                }
+            } else {
+                return "Usuário não cadastrado";
+            }
+        } else {
+            return "Adotante não pode ser nulo";
+        }
+    }
+
 }

@@ -24,7 +24,6 @@ import lombok.ToString;
 public class Permissao {
 
     private String nome;
-    
-    private Sring descricao;
+    private String descricao;
     
 }
