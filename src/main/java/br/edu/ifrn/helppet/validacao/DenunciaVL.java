@@ -1,7 +1,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Denuncia;
-import br.edu.ifrn.helppet.persistencia.DenunciaPers;
+import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class DenunciaVL {
     private final int tamanhoTitulo = 30;
     private final ArrayList<String> tipo = new ArrayList<>();
     
-    DenunciaPers dao = new DenunciaPers();
+    PersistenciaGamb dao = new PersistenciaGamb();
 
     public DenunciaVL() {
         tipo.add("Abandono");         // Tipos válidos
@@ -24,7 +24,7 @@ public class DenunciaVL {
     }
     
     public List<Denuncia> ListarDenuncia(){
-	return dao.Listar();
+	return dao.ListarDenuncias();
     }
     
     public String CadastrarDenuncia(Denuncia d) {
@@ -34,7 +34,7 @@ public class DenunciaVL {
 		    if (validarTipo(d).equals("OK")) {
 			if (validarDescricao(d).equals("OK")) {
 			    if (validarLocalizacao(d).equals("OK")) {
-				dao.Cadastrar(d);
+				dao.cadastrarDenuncia(d);
 				return "Cadastrado com sucesso";
 			    } else {
 				return validarLocalizacao(d);

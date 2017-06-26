@@ -1,7 +1,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Animal;
-import br.edu.ifrn.helppet.persistencia.UsuariosCadastradosGambiarra;
+import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class AnimalVL {
     private final List<String> raca = new ArrayList();
     
     
-    UsuariosCadastradosGambiarra dao;
+    PersistenciaGamb dao;
 
     public AnimalVL() {
         // Tipos válidos
@@ -43,7 +43,7 @@ public class AnimalVL {
         raca.add("SRD");
         raca.add("Outra");
 
-        dao = new UsuariosCadastradosGambiarra();
+        dao = new PersistenciaGamb();
     }
     
     
@@ -59,6 +59,7 @@ public class AnimalVL {
                                         if(validarEspecie(a).equals("OK")){
                                             if(validarTipo(a).equals("OK")){
                                                 if(validarNome(a).equals("OK")){
+                                                    dao.cadastrarAnimal(a);
                                                     return "Cadastrado com sucesso";
                                                 } else {
                                                     return validarNome(a);
