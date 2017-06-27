@@ -99,6 +99,10 @@ public class PersistenciaGamb {
         // MÉTODO PARA EXCLUIR ANIMAL
     }
     
+    public void excluirEncontro(Encontro encontro){
+        // MÉTODO PARA EXCLUIR ENCONTRO
+    }
+    
     public void excluirDenuncia(Denuncia denuncia){
         // MÉTODO PARA EXCLUIR DENÚNCIA
     }

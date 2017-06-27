@@ -169,4 +169,23 @@ public class EncontroVL {
 
     }
 
+    public String excluirEncontro(Encontro encontro, Usuario usuario) {
+
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                for (Encontro e : dao.ListarEncontros()) {
+                    if (e.equals(encontro)) {
+                        if (encontro.getAdotante().equals(usuario)) {
+                            dao.excluirEncontro(e);
+                            return "Encontro excluído";
+                        }
+                    }
+                }
+            }
+        }
+
+        return "Encontro não encontrado";
+
+    }
+
 }
