@@ -1,6 +1,11 @@
 package br.edu.ifrn.helppet.dominio;
 
 import java.util.Date;
+import java.util.Set;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +28,15 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Permissao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private String nome;
+    
     private String descricao;
+    
+    @OneToMany
+    private Set<Usuario> usuarios;
     
 }
