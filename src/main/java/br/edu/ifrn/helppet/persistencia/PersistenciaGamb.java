@@ -43,6 +43,10 @@ public class PersistenciaGamb {
     public List<Usuario> ListarUsuarios() {
         return listaDeUsuarios;
     }
+    
+    public List<Encontro> ListarEncontros() {
+        return listaDeEncontros;
+    }
 
     public List<PessoaFisica> ListarPF() {
         return listaDePF;
