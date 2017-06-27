@@ -94,6 +94,10 @@ public class PersistenciaGamb {
     public void excluirAnimal(Animal animal){
         // MÉTODO PARA EXCLUIR ANIMAL
     }
+    
+    public void excluirDenuncia(Denuncia denuncia){
+        // MÉTODO PARA EXCLUIR DENÚNCIA
+    }
 
     public void inserirUsuarios() {
         Usuario usuario1 = new Usuario();

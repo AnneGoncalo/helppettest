@@ -151,5 +151,14 @@ public class DenunciaVL {
 
     }
     
+    public String excluirDenuncia(Denuncia d){
+        if(dao.ListarDenuncias().contains(d)){
+            dao.excluirDenuncia(d);
+            return "Denúncia excluída";
+        } else{
+            return "Denúncia não encontrada";
+        }
+    }
+    
 
 }
