@@ -82,6 +82,10 @@ public class PersistenciaGamb {
     public void cadastrarEncontro(Encontro encontro) {
         listaDeEncontros.add(encontro);
     }
+    
+    public void editarAnimal(Animal animal) {
+        // MÉTODO PARA EDITAR ANIMAL
+    }
 
     public void inserirUsuarios() {
         Usuario usuario1 = new Usuario();
