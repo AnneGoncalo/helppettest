@@ -19,7 +19,7 @@ import br.edu.ifrn.helppet.dominio.Denuncia;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * CrudRepository com definicao de metodo.
  * @author anne
  */
 public interface DenunciaRepository extends CrudRepository<Denuncia, Long> {

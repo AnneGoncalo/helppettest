@@ -28,9 +28,9 @@ public class DenunciaService {
 	
 	DenunciaServico dao = new DenunciaServico();
 	dao.save(a);
-	return (List<Denuncia>) dao.findAll();
-        //DenunciaVL servico = new DenunciaVL();
-        //return servico.ListarDenuncia();
+	//return (List<Denuncia>) dao.findAll();
+        DenunciaVL servico = new DenunciaVL();
+        return servico.ListarDenuncia();
     }
 
     @RequestMapping(method = RequestMethod.POST)
