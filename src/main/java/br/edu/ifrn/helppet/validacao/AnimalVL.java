@@ -354,16 +354,22 @@ public class AnimalVL {
         }
 
     }
-    
-    
-    public String excluirAnimal(Animal a){
-        if(dao.ListarAnimais().contains(a)){
-            dao.excluirAnimal(a);
-            return "Animal excluído";
-        } else{
-            return "Animal não encontrado";
-        }
-    }
 
+    public String excluirAnimal(Animal animal, Usuario usuario) {
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                for (Animal a : dao.ListarAnimais()) {
+                    if (a.equals(animal)) {
+                        if (a.getResponsavel().equals(usuario)) {
+                            dao.excluirAnimal(a);
+                            return "Animal excluído";
+                        }
+                    }
+                }
+            }
+        }
+        return "Animal não encontrado";
+
+    }
 
 }
