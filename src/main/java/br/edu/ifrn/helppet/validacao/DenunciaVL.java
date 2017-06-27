@@ -127,5 +127,29 @@ public class DenunciaVL {
             return "Tipo inválido";
         }
     }
+    
+    public String editarDenuncia(Denuncia d) {
+
+        if (validarTitulo(d).equals("OK")) {
+            if (validarTipo(d).equals("OK")) {
+                if (validarDescricao(d).equals("OK")) {
+                    if (validarLocalizacao(d).equals("OK")) {
+                        dao.editarDenuncia(d);
+                        return "Editado com sucesso";
+                    } else {
+                        return validarLocalizacao(d);
+                    }
+                } else {
+                    return validarDescricao(d);
+                }
+            } else {
+                return validarTipo(d);
+            }
+        } else {
+            return validarTitulo(d);
+        }
+
+    }
+    
 
 }
