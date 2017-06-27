@@ -1,6 +1,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Encontro;
+import br.edu.ifrn.helppet.dominio.Usuario;
 import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,51 +13,45 @@ import java.util.Date;
 public class EncontroVL {
 
     PersistenciaGamb dao;
+    private final int tamanhoFrase = 255;
 
     public EncontroVL() {
 
         dao = new PersistenciaGamb();
     }
 
-    
-    public String cadastrarEncontro(Encontro e){
-        if(e != null){
-            if(!e.isEmpty()){
-                if(validarAnimal(e).equals("OK")){
-                    if(validarData(e).equals("OK")){
-                        if(validacaoLocal(e).equals("OK")){
-                            if(validarAdotante(e).equals("OK")){
-                                dao.cadastrarEncontro(e);
-                                return "Cadastrado com sucesso";
-                            } else {
-                                return validarAdotante(e);
-                            }
-                        } else {
-                            return validacaoLocal(e);
-                        }
+    public String cadastrarEncontro(Encontro e) {
+
+        if (validarAnimal(e).equals("OK")) {
+            if (validarData(e).equals("OK")) {
+                if (validarLocalizacao(e).equals("OK")) {
+                    if (validarAdotante(e).equals("OK")) {
+                        dao.cadastrarEncontro(e);
+                        return "Cadastrado com sucesso";
                     } else {
-                        return validarData(e);
+                        return validarAdotante(e);
                     }
                 } else {
-                    return validarAnimal(e);
+                    return validarLocalizacao(e);
                 }
             } else {
-                return "Campos vazios";
+                return validarData(e);
             }
         } else {
-            return "Objeto nulo";
+            return validarAnimal(e);
         }
+
     }
-    
+
     private String validarAnimal(Encontro e) {
         if (e.getAnimal() != null) {
             if (dao.ListarAnimais().contains(e.getAnimal())) {
                 return "OK";
             } else {
-                return "Animal não encontrado ou não existe";
+                return "Animal não encontrado";
             }
         } else {
-            return "Animal não encontrado ou não existe";
+            return "Animal não encontrado";
         }
     }
 
@@ -78,19 +73,20 @@ public class EncontroVL {
         }
     }
 
-    private String validacaoLocal(Encontro e) {
+    private String validarLocalizacao(Encontro e) {
         if (e.getLocalizacao() != null) {
-            if (!e.getLocalizacao().isEmpty()) {
-                if (e.getLocalizacao().length() <= 255) {
+            String palavraSemEspaco = e.getLocalizacao().trim();
+            if (!e.getLocalizacao().isEmpty() && (palavraSemEspaco.length() != 0)) {
+                if (e.getLocalizacao().length() <= tamanhoFrase) {
                     return "OK";
                 } else {
-                    return "Tamanho maior que o esperado: " + e.getLocalizacao().length();
+                    return "Localização muito grande";
                 }
             } else {
-                return "Localização está vazia";
+                return "Informe uma localização válida";
             }
         } else {
-            return "Local do encontro é um campo obrigatório";
+            return "Local do encontro é obrigatório";
         }
     }
 
@@ -104,10 +100,10 @@ public class EncontroVL {
                                 if (e.getAdotante().getUsuario().getTelefone() != null) {
                                     return "OK";
                                 } else {
-                                    return "O adotante deve informar o número de telefone";
+                                    return "Telefone do adotante não pode ser nulo";
                                 }
                             } else {
-                                return "O adotante tem que ter uma localização";
+                                return "Localização do adotante não pode ser nulo";
                             }
                         } else {
                             return "CPF do adotante não pode ser nulo";
@@ -124,6 +120,72 @@ public class EncontroVL {
         } else {
             return "Adotante não pode ser nulo";
         }
+    }
+
+    // Método pra verificar se o encontro pertence ao usuario 
+    //** dúvida **
+    public String listarEncontrosUsuario(Encontro encontro, Usuario usuario) {
+        boolean testeUser = false, testeEnc = false;
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                testeUser = true;
+            }
+        }
+        for (Encontro e : dao.ListarEncontros()) {
+            if (e.equals(encontro)) {
+                if (testeUser == true) {
+                    if (encontro.getAdotante().equals(usuario)) {
+                        // pega encontro no bd
+                        testeEnc = true;
+                        return "Ok";
+                    }
+                }
+            }
+        }
+        if (testeUser == false) {
+            return "Vínculo não corresponde";
+        } else {
+            if (testeEnc == true) {
+                return "Ok";
+            } else {
+                return "Vínculo não corresponde";
+            }
+        }
+    }
+
+    public String editarEncontro(Encontro e) {
+
+        if (validarData(e).equals("OK")) {
+            if (validarLocalizacao(e).equals("OK")) {
+                // Alteraçao da flague 'editado' no BD
+                dao.cadastrarEncontro(e);
+                return "Editado com sucesso";
+            } else {
+                return validarLocalizacao(e);
+            }
+        } else {
+            return validarData(e);
+        }
+
+    }
+
+    public String excluirEncontro(Encontro encontro, Usuario usuario) {
+
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                for (Encontro e : dao.ListarEncontros()) {
+                    if (e.equals(encontro)) {
+                        if (encontro.getAdotante().equals(usuario)) {
+                            dao.excluirEncontro(e);
+                            return "Encontro excluído";
+                        }
+                    }
+                }
+            }
+        }
+
+        return "Encontro não encontrado";
+
     }
 
 }

@@ -43,6 +43,10 @@ public class PersistenciaGamb {
     public List<Usuario> ListarUsuarios() {
         return listaDeUsuarios;
     }
+    
+    public List<Encontro> ListarEncontros() {
+        return listaDeEncontros;
+    }
 
     public List<PessoaFisica> ListarPF() {
         return listaDePF;
@@ -81,6 +85,26 @@ public class PersistenciaGamb {
 
     public void cadastrarEncontro(Encontro encontro) {
         listaDeEncontros.add(encontro);
+    }
+    
+    public void editarAnimal(Animal animal) {
+        // MÉTODO PARA EDITAR ANIMAL
+    }
+    
+    public void editarDenuncia(Denuncia denuncia) {
+        // MÉTODO PARA EDITAR DENUNCIA
+    }
+    
+    public void excluirAnimal(Animal animal){
+        // MÉTODO PARA EXCLUIR ANIMAL
+    }
+    
+    public void excluirEncontro(Encontro encontro){
+        // MÉTODO PARA EXCLUIR ENCONTRO
+    }
+    
+    public void excluirDenuncia(Denuncia denuncia){
+        // MÉTODO PARA EXCLUIR DENÚNCIA
     }
 
     public void inserirUsuarios() {

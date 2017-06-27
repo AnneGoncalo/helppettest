@@ -93,7 +93,7 @@ public class AnimalVL {
     }
 
     private String validarResponsavel(Animal a) {
-              
+
         if (a.getResponsavel() != null) {
             if (dao.ListarUsuarios().contains(a.getResponsavel())) {
                 if (a.getResponsavel().getNome() != null) {
@@ -261,45 +261,44 @@ public class AnimalVL {
             }
         }
     }
-    
-    private String validarEspecieListagem(String especie){
-        if(especies.contains(especie) || especie == null){
+
+    private String validarEspecieListagem(String especie) {
+        if (especies.contains(especie) || especie == null) {
             return "OK";
-        } else{
+        } else {
             return "Espécie inválida";
         }
     }
-    
-    private String validarIdadeListagem(String idade){
-        if(idades.contains(idade) || idade == null){
+
+    private String validarIdadeListagem(String idade) {
+        if (idades.contains(idade) || idade == null) {
             return "OK";
-        } else{
+        } else {
             return "Idade inválida";
         }
     }
-    
-    private String validarRacaListagem(String raca){
-        if(racas.contains(raca) || raca == null){
+
+    private String validarRacaListagem(String raca) {
+        if (racas.contains(raca) || raca == null) {
             return "OK";
-        } else{
+        } else {
             return "Raça inválida";
         }
     }
-    
-    private String validarSexoListagem(String sexo){
-        if(sexos.contains(sexo) || sexo == null){
+
+    private String validarSexoListagem(String sexo) {
+        if (sexos.contains(sexo) || sexo == null) {
             return "OK";
-        } else{
+        } else {
             return "Sexo inválido";
         }
     }
-    
-    
-    public String validacaoListagem(String especie, String idade, String raca, String sexo){
-        if(validarSexoListagem(sexo).equals("OK")){
-            if(validarRacaListagem(raca).equals("OK")){
-                if(validarIdadeListagem(idade).equals("OK")){
-                    if(validarEspecieListagem(especie).equals("OK")){
+
+    public String validacaoListagem(String especie, String idade, String raca, String sexo) {
+        if (validarSexoListagem(sexo).equals("OK")) {
+            if (validarRacaListagem(raca).equals("OK")) {
+                if (validarIdadeListagem(idade).equals("OK")) {
+                    if (validarEspecieListagem(especie).equals("OK")) {
                         dao.filtragemAnimal(especie, idade, raca, sexo);
                         return "OK";
                     } else {
@@ -314,7 +313,63 @@ public class AnimalVL {
         } else {
             return validarSexoListagem(sexo);
         }
-        
+
     }
-    
+
+    public String editarAnimal(Animal a) {
+
+        if (validarLocal(a).equals("OK")) {
+            if (validarDescricao(a).equals("OK")) {
+                if (validarRaca(a).equals("OK")) {
+                    if (validarSexo(a).equals("OK")) {
+                        if (validarIdade(a).equals("OK")) {
+                            if (validarEspecie(a).equals("OK")) {
+                                if (validarTipo(a).equals("OK")) {
+                                    if (validarNome(a).equals("OK")) {
+                                        dao.editarAnimal(a);
+                                        return "Editado com sucesso";
+                                    } else {
+                                        return validarNome(a);
+                                    }
+                                } else {
+                                    return validarTipo(a);
+                                }
+                            } else {
+                                return validarEspecie(a);
+                            }
+                        } else {
+                            return validarIdade(a);
+                        }
+                    } else {
+                        return validarSexo(a);
+                    }
+                } else {
+                    return validarRaca(a);
+                }
+            } else {
+                return validarDescricao(a);
+            }
+        } else {
+            return validarLocal(a);
+        }
+
+    }
+
+    public String excluirAnimal(Animal animal, Usuario usuario) {
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                for (Animal a : dao.ListarAnimais()) {
+                    if (a.equals(animal)) {
+                        if (a.getResponsavel().equals(usuario)) {
+                            dao.excluirAnimal(a);
+                            return "Animal excluído";
+                        }
+                    }
+                }
+            }
+        }
+        return "Animal não encontrado";
+
+    }
+
 }
