@@ -1,6 +1,7 @@
 package br.edu.ifrn.helppet.comunicacao;
 
 import br.edu.ifrn.helppet.dominio.Denuncia;
+import br.edu.ifrn.helppet.servico.DenunciaServico;
 import br.edu.ifrn.helppet.validacao.DenunciaVL;
 import java.util.List;
 import org.json.simple.parser.JSONParser;
@@ -19,8 +20,17 @@ public class DenunciaService {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Denuncia> Listar() {
-        DenunciaVL servico = new DenunciaVL();
-        return servico.ListarDenuncia();
+	Denuncia a = new Denuncia();
+        a.setTitulo("denuncia Teste Persistencia");
+        a.setTipo("Outro");
+        a.setDescricao("descrição da denuncia teste de persistencia");
+        a.setLocalizacao("Natal, RN");
+	
+	DenunciaServico dao = new DenunciaServico();
+	dao.save(a);
+	return (List<Denuncia>) dao.findAll();
+        //DenunciaVL servico = new DenunciaVL();
+        //return servico.ListarDenuncia();
     }
 
     @RequestMapping(method = RequestMethod.POST)
