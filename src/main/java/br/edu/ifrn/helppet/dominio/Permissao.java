@@ -1,5 +1,6 @@
 package br.edu.ifrn.helppet.dominio;
 
+import java.util.Date;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,31 +12,18 @@ import lombok.ToString;
 
 /**
  *
- * @author camila
+ * @author anne
  */
 @Getter
 @Setter
-@ToString(exclude = "foto")
-@EqualsAndHashCode(exclude = {"foto", "nascimento", "localizacao"})
+@ToString
+@EqualsAndHashCode(exclude = "descricao")
 @Builder
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class Usuario {
+public class Permissao {
 
     private String nome;
-    
-    private String email;
-    
-    private String senha;
-    
-    private String foto;
-    
-    private String nascimento;
-    
-    private String localizacao;
-    
-    private String telefone;
-    
-    private Permissao permissao;
+    private String descricao;
     
 }

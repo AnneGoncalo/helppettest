@@ -40,7 +40,7 @@ public class Estoque {
     private String produto;
     
     private String tipo;
-    
+        
     private double qtdAtual;
     
     private double qtdIdeal;
