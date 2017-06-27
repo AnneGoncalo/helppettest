@@ -34,49 +34,53 @@ public class PersistenciaGamb {
     List<Denuncia> listaDeDenuncias = new ArrayList();
     List<PessoaFisica> listaDePF = new ArrayList();
     List<Encontro> listaDeEncontros = new ArrayList();
-    
-    
-    public PersistenciaGamb(){
-         inserirUsuarios();
-         inserirDenuncias();
+
+    public PersistenciaGamb() {
+        inserirUsuarios();
+        inserirDenuncias();
     }
 
     public List<Usuario> ListarUsuarios() {
         return listaDeUsuarios;
     }
-    
+
     public List<PessoaFisica> ListarPF() {
         return listaDePF;
     }
-    
+
     public List<Denuncia> ListarDenuncias() {
         return listaDeDenuncias;
     }
-    
+
     public List<Animal> ListarAnimais() {
         return listaDeAnimais;
     }
-    
-    public List<Denuncia> listarPorTipo(String tipo){
+
+    public List<Denuncia> listarPorTipo(String tipo) {
         List<Denuncia> lista = new ArrayList();
-        for(Denuncia d : listaDeDenuncias){
-            if(d.getTipo() == tipo){
+        for (Denuncia d : listaDeDenuncias) {
+            if (d.getTipo() == tipo) {
                 lista.add(d);
             }
         }
         return lista;
     }
-    
-    public void cadastrarDenuncia(Denuncia denuncia){
-	listaDeDenuncias.add(denuncia);
+
+    public List<Animal> filtragemAnimal(String especie, String idade, String raca, String sexo) {
+        // Chama listagem do banco com os filtros
+        return listaDeAnimais;
     }
-    
-    public void cadastrarAnimal(Animal animal){
-	listaDeAnimais.add(animal);
+
+    public void cadastrarDenuncia(Denuncia denuncia) {
+        listaDeDenuncias.add(denuncia);
     }
-    
-    public void cadastrarEncontro(Encontro encontro){
-	listaDeEncontros.add(encontro);
+
+    public void cadastrarAnimal(Animal animal) {
+        listaDeAnimais.add(animal);
+    }
+
+    public void cadastrarEncontro(Encontro encontro) {
+        listaDeEncontros.add(encontro);
     }
 
     public void inserirUsuarios() {
@@ -113,20 +117,20 @@ public class PersistenciaGamb {
         listaDeUsuarios.add(usuario4);
 
     }
-    
-    private void inserirDenuncias(){
-	Denuncia a = new Denuncia();
-	a.setTitulo("denuncia A");
-	a.setTipo("Outro");
-	a.setDescricao("descrição da denuncia A");
-	a.setLocalizacao("Natal, RN");
-	listaDeDenuncias.add(a);
-	Denuncia b = new Denuncia();
-	b.setTitulo("denuncia B");
-	b.setTipo("Outro");
-	b.setDescricao("descrição da denuncia B");
-	b.setLocalizacao("Natal, RN");
-	listaDeDenuncias.add(b);
+
+    private void inserirDenuncias() {
+        Denuncia a = new Denuncia();
+        a.setTitulo("denuncia A");
+        a.setTipo("Outro");
+        a.setDescricao("descrição da denuncia A");
+        a.setLocalizacao("Natal, RN");
+        listaDeDenuncias.add(a);
+        Denuncia b = new Denuncia();
+        b.setTitulo("denuncia B");
+        b.setTipo("Outro");
+        b.setDescricao("descrição da denuncia B");
+        b.setLocalizacao("Natal, RN");
+        listaDeDenuncias.add(b);
     }
 
 }

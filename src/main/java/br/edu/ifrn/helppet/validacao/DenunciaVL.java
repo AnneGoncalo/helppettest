@@ -18,9 +18,9 @@ public class DenunciaVL {
     PersistenciaGamb dao;
 
     public DenunciaVL() {
-        tipos.add("Abandono");
-        tipos.add("Maus Tratos");
-        tipos.add("Outro");
+        tipos.add("abandono");
+        tipos.add("maus tratos");
+        tipos.add("outro");
         dao = new PersistenciaGamb();
     }
     
@@ -121,7 +121,7 @@ public class DenunciaVL {
     
     public String listarPorTipo(String tipo){
         String palavraSemEspaco = tipo.trim();
-        if((tipo != null) && (tipo.length() != 0) && (tipos.contains(tipo))){
+        if(tipos.contains(tipo)){
             dao.listarPorTipo(tipo);
             return "OK";
         } else{
