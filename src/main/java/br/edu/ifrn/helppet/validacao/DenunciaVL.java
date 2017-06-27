@@ -120,7 +120,6 @@ public class DenunciaVL {
     }
     
     public String listarPorTipo(String tipo){
-        String palavraSemEspaco = tipo.trim();
         if(tipos.contains(tipo)){
             dao.listarPorTipo(tipo);
             return "OK";

@@ -86,6 +86,10 @@ public class PersistenciaGamb {
     public void editarAnimal(Animal animal) {
         // MÉTODO PARA EDITAR ANIMAL
     }
+    
+    public void excluirAnimal(Animal animal){
+        // MÉTODO PARA EXCLUIR ANIMAL
+    }
 
     public void inserirUsuarios() {
         Usuario usuario1 = new Usuario();

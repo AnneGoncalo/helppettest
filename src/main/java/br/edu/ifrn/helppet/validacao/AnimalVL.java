@@ -354,5 +354,16 @@ public class AnimalVL {
         }
 
     }
+    
+    
+    public String excluirAnimal(Animal a){
+        if(dao.ListarAnimais().contains(a)){
+            dao.excluirAnimal(a);
+            return "Animal excluído";
+        } else{
+            return "Animal não encontrado";
+        }
+    }
+
 
 }
