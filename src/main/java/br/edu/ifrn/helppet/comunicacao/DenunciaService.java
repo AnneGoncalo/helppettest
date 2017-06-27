@@ -20,17 +20,17 @@ public class DenunciaService {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Denuncia> Listar() {
-	Denuncia a = new Denuncia();
-        a.setTitulo("denuncia Teste Persistencia");
-        a.setTipo("Outro");
-        a.setDescricao("descrição da denuncia teste de persistencia");
-        a.setLocalizacao("Natal, RN");
+//	Denuncia a = new Denuncia();
+//        a.setTitulo("denuncia Teste Persistencia");
+//        a.setTipo("Outro");
+//        a.setDescricao("descrição da denuncia teste de persistencia");
+//        a.setLocalizacao("Natal, RN");
 	
 	DenunciaServico dao = new DenunciaServico();
-	dao.save(a);
-	//return (List<Denuncia>) dao.findAll();
-        DenunciaVL servico = new DenunciaVL();
-        return servico.ListarDenuncia();
+	//dao.save(a);
+	return (List<Denuncia>) dao.findAll();
+        //DenunciaVL servico = new DenunciaVL();
+        //return servico.ListarDenuncia();
     }
 
     @RequestMapping(method = RequestMethod.POST)
