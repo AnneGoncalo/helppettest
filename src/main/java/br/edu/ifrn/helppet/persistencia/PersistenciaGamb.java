@@ -52,6 +52,10 @@ public class PersistenciaGamb {
     public List<Encontro> ListarEncontros() {
         return listaDeEncontros;
     }
+    
+    public List<Estoque> ListarEstoques() {
+        return listaDeEstoques;
+    }
 
     public List<PessoaFisica> ListarPF() {
         return listaDePF;
@@ -105,6 +109,10 @@ public class PersistenciaGamb {
         // MÉTODO PARA EDITAR ANIMAL
     }
     
+    public void editarEstoque(Estoque estoque) {
+        // MÉTODO PARA EDITAR ESTOQUE
+    }
+    
     public void editarDenuncia(Denuncia denuncia) {
         // MÉTODO PARA EDITAR DENUNCIA
     }
@@ -115,6 +123,10 @@ public class PersistenciaGamb {
     
     public void excluirEncontro(Encontro encontro){
         // MÉTODO PARA EXCLUIR ENCONTRO
+    }
+    
+    public void excluirEstoque(Estoque estoque){
+        // MÉTODO PARA EXCLUIR ESTOQUE
     }
     
     public void excluirDenuncia(Denuncia denuncia){

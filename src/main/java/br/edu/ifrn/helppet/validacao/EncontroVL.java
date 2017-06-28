@@ -137,7 +137,7 @@ public class EncontroVL {
                     if (encontro.getAdotante().equals(usuario)) {
                         // pega encontro no bd
                         testeEnc = true;
-                        return "Ok";
+                        return "OK";
                     }
                 }
             }
@@ -146,7 +146,7 @@ public class EncontroVL {
             return "Vínculo não corresponde";
         } else {
             if (testeEnc == true) {
-                return "Ok";
+                return "OK";
             } else {
                 return "Vínculo não corresponde";
             }

@@ -16,6 +16,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Estoque;
+import br.edu.ifrn.helppet.dominio.PessoaJuridica;
 import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.util.ArrayList;
 
@@ -153,6 +154,77 @@ public class EstoqueVL {
         } else {
             return "ONG não pode ser um valor nulo";
         }
+    }
+
+    // Método pra verificar se o estoque pertence a ONG 
+    //** dúvida ** 
+    public String listarEncontrosUsuario(Estoque estoque, PessoaJuridica pj) {
+        boolean testeUser = false, testeEnc = false;
+        for (PessoaJuridica u : dao.ListarPJ()) {
+            if (u.equals(pj)) {
+                testeUser = true;
+            }
+        }
+        for (Estoque e : dao.ListarEstoques()) {
+            if (e.equals(estoque)) {
+                if (testeUser == true) {
+                    if (estoque.getUsuario().equals(pj)) {
+                        // pega encontro no bd
+                        testeEnc = true;
+                        return "OK";
+                    }
+                }
+            }
+        }
+        if (testeUser == false) {
+            return "Vínculo não corresponde";
+        } else {
+            if (testeEnc == true) {
+                return "OK";
+            } else {
+                return "Vínculo não corresponde";
+            }
+        }
+    }
+
+    public String editarEstoque(Estoque e) {
+        if (validarNome(e).equals("OK")) {
+            if (validarTipo(e).equals("OK")) {
+                if (validarQtdAtual(e).equals("OK")) {
+                    if (validarQtdIdeal(e).equals("OK")) {
+                        dao.editarEstoque(e);
+                        return "Editado com sucesso";
+                    } else {
+                        return validarQtdIdeal(e);
+                    }
+                } else {
+                    return validarQtdAtual(e);
+                }
+            } else {
+                return validarTipo(e);
+            }
+        } else {
+            return validarNome(e);
+        }
+    }
+    
+    public String excluirEstoque(Estoque estoque, PessoaJuridica pj) {
+
+        for (PessoaJuridica u : dao.ListarPJ()) {
+            if (u.equals(pj)) {
+                for (Estoque e : dao.ListarEstoques()) {
+                    if (e.equals(estoque)) {
+                        if (estoque.getUsuario().equals(pj)) {
+                            dao.excluirEstoque(e);
+                            return "Estoque excluído";
+                        }
+                    }
+                }
+            }
+        }
+
+        return "Estoque não encontrado";
+
     }
 
 }
