@@ -18,7 +18,9 @@ package br.edu.ifrn.helppet.persistencia;
 import br.edu.ifrn.helppet.dominio.Animal;
 import br.edu.ifrn.helppet.dominio.Denuncia;
 import br.edu.ifrn.helppet.dominio.Encontro;
+import br.edu.ifrn.helppet.dominio.Estoque;
 import br.edu.ifrn.helppet.dominio.PessoaFisica;
+import br.edu.ifrn.helppet.dominio.PessoaJuridica;
 import br.edu.ifrn.helppet.dominio.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,10 @@ public class PersistenciaGamb {
     List<Animal> listaDeAnimais = new ArrayList();
     List<Denuncia> listaDeDenuncias = new ArrayList();
     List<PessoaFisica> listaDePF = new ArrayList();
+    List<PessoaJuridica> listaDePJ = new ArrayList();
     List<Encontro> listaDeEncontros = new ArrayList();
+    List<Estoque> listaDeEstoques = new ArrayList();
+    
 
     public PersistenciaGamb() {
         inserirUsuarios();
@@ -59,6 +64,11 @@ public class PersistenciaGamb {
     public List<Animal> ListarAnimais() {
         return listaDeAnimais;
     }
+    
+    public List<PessoaJuridica> ListarPJ() {
+        return listaDePJ;
+    }
+    
 
     public List<Denuncia> listarPorTipo(String tipo) {
         List<Denuncia> lista = new ArrayList();
@@ -85,6 +95,10 @@ public class PersistenciaGamb {
 
     public void cadastrarEncontro(Encontro encontro) {
         listaDeEncontros.add(encontro);
+    }
+
+    public void cadastrarEstoque(Estoque estoque) {
+        listaDeEstoques.add(estoque);
     }
     
     public void editarAnimal(Animal animal) {
