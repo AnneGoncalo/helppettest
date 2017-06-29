@@ -1,6 +1,6 @@
 spring: 
   datasource: 
-    url: DATABASE_URL
+    url: postgres://qzcdlrvfupzbcg:a2ce7fafcedc4e04e10b91b23be301d3a9b88f113942aea9362ee2ae1de66906@ec2-50-19-83-146.compute-1.amazonaws.com:5432/d3b1067m8lmor8
     username: qzcdlrvfupzbcg
     password: a2ce7fafcedc4e04e10b91b23be301d3a9b88f113942aea9362ee2ae1de66906
 # Number of ms to wait before throwing an exception if no connection is available.
@@ -20,5 +20,3 @@ jsf:
 info:
   url: @project.url@
   version: @project.version@
-server:
-  port: 8080
