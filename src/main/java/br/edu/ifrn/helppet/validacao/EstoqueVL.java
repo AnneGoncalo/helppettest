@@ -169,7 +169,7 @@ public class EstoqueVL {
             if (e.equals(estoque)) {
                 if (testeUser == true) {
                     if (estoque.getUsuario().equals(pj)) {
-                        // pega encontro no bd
+                        // pega estoque no bd
                         testeEnc = true;
                         return "OK";
                     }
