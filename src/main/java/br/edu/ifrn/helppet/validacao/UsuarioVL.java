@@ -133,4 +133,23 @@ public class UsuarioVL {
     }
     
     
+    // Formato: dd/MM/AAAA (10 caracteres na string)
+    public String validarNascimento(Usuario u) {
+        if(u.getNascimento() != null && !u.getNascimento().equals("")){
+            if(u.getNascimento().length() == 10){
+                if((u.getNascimento().charAt(0) == '1' || u.getNascimento().charAt(0) == '2' || u.getNascimento().charAt(0) == '3' || u.getNascimento().charAt(0) == '4' || u.getNascimento().charAt(0) == '5' || u.getNascimento().charAt(0) == '6' || u.getNascimento().charAt(0) == '7' || u.getNascimento().charAt(0) == '8' || u.getNascimento().charAt(0) == '9' || u.getNascimento().charAt(0) == '0') && (u.getNascimento().charAt(1) == '1' || u.getNascimento().charAt(1) == '2' || u.getNascimento().charAt(1) == '3' || u.getNascimento().charAt(1) == '4' || u.getNascimento().charAt(1) == '5' || u.getNascimento().charAt(1) == '6' || u.getNascimento().charAt(1) == '7' || u.getNascimento().charAt(1) == '8' || u.getNascimento().charAt(1) == '9' || u.getNascimento().charAt(1) == '0') && (u.getNascimento().charAt(3) == '1' || u.getNascimento().charAt(3) == '2' || u.getNascimento().charAt(3) == '3' || u.getNascimento().charAt(3) == '4' || u.getNascimento().charAt(3) == '5' || u.getNascimento().charAt(3) == '6' || u.getNascimento().charAt(3) == '7' || u.getNascimento().charAt(3) == '8' || u.getNascimento().charAt(3) == '9' || u.getNascimento().charAt(3) == '0') && (u.getNascimento().charAt(4) == '1' || u.getNascimento().charAt(4) == '2' || u.getNascimento().charAt(4) == '3' || u.getNascimento().charAt(4) == '4' || u.getNascimento().charAt(4) == '5' || u.getNascimento().charAt(4) == '6' || u.getNascimento().charAt(4) == '7' || u.getNascimento().charAt(4) == '8' || u.getNascimento().charAt(4) == '9' || u.getNascimento().charAt(4) == '0') && (u.getNascimento().charAt(6) == '1' || u.getNascimento().charAt(6) == '2' || u.getNascimento().charAt(6) == '3' || u.getNascimento().charAt(6) == '4' || u.getNascimento().charAt(6) == '5' || u.getNascimento().charAt(6) == '6' || u.getNascimento().charAt(6) == '7' || u.getNascimento().charAt(6) == '8' || u.getNascimento().charAt(6) == '9' || u.getNascimento().charAt(6) == '0') && (u.getNascimento().charAt(7) == '1' || u.getNascimento().charAt(7) == '2' || u.getNascimento().charAt(7) == '3' || u.getNascimento().charAt(7) == '4' || u.getNascimento().charAt(7) == '5' || u.getNascimento().charAt(7) == '6' || u.getNascimento().charAt(7) == '7' || u.getNascimento().charAt(7) == '8' || u.getNascimento().charAt(7) == '9' || u.getNascimento().charAt(7) == '0') && (u.getNascimento().charAt(8) == '1' || u.getNascimento().charAt(8) == '2' || u.getNascimento().charAt(8) == '3' || u.getNascimento().charAt(8) == '4' || u.getNascimento().charAt(8) == '5' || u.getNascimento().charAt(8) == '6' || u.getNascimento().charAt(8) == '7' || u.getNascimento().charAt(8) == '8' || u.getNascimento().charAt(8) == '9' || u.getNascimento().charAt(8) == '0') && (u.getNascimento().charAt(9) == '1' || u.getNascimento().charAt(9) == '2' || u.getNascimento().charAt(9) == '3' || u.getNascimento().charAt(9) == '4' || u.getNascimento().charAt(9) == '5' || u.getNascimento().charAt(9) == '6' || u.getNascimento().charAt(9) == '7' || u.getNascimento().charAt(9) == '8' || u.getNascimento().charAt(9) == '9' || u.getNascimento().charAt(9) == '0') && (u.getNascimento().charAt(2) == '/') && (u.getNascimento().charAt(5) == '/')){
+                    return "OK";
+                } else {
+                    return "Data de nascimento inválida";
+                }
+            } else {
+                return "Data de nascimento inválida";
+            }
+        } else {
+            return "OK";
+        }
+    }
+
+    
+    
 }
