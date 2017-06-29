@@ -2,12 +2,14 @@ package br.edu.ifrn.helppet.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 
@@ -66,6 +68,9 @@ public class Animal implements Serializable {
     
     @ManyToOne
     private Usuario responsavel;
+    
+    @OneToMany(mappedBy = "animal")
+    private Set<Encontro> encontros;
 
     public boolean isEmpty(){
 	return !(this.nome != null && this.tipo != null && this.especie != null && this.raca != null && this.idade != null && this.sexo != null && this.localizacao != null);

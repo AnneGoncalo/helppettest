@@ -15,6 +15,13 @@
  */
 package br.edu.ifrn.helppet.dominio;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,11 +38,19 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(exclude = "foto")
-@EqualsAndHashCode(exclude = "foto")
+@EqualsAndHashCode(exclude = {"id", "foto"})
 @Builder
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class Anuncio {
+@Entity
+@SequenceGenerator(sequenceName = "seq_anuncio", name = "ID_SEQUENCE", allocationSize = 1)
+public class Anuncio implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+    private Long id;
     
     private String titulo;
     
@@ -45,6 +60,7 @@ public class Anuncio {
     
     private String foto;
     
+    @ManyToOne
     private Usuario responsavel;
 
 }

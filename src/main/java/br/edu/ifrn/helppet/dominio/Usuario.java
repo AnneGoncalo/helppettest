@@ -1,12 +1,16 @@
 package br.edu.ifrn.helppet.dominio;
 
 import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +33,7 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @SequenceGenerator(sequenceName = "seq_usuario", name = "ID_SEQUENCE", allocationSize = 1)
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
@@ -53,5 +57,11 @@ public class Usuario implements Serializable{
     
     @ManyToOne
     private Permissao permissao;
+    
+    @OneToMany
+    private Set<Animal> animais;
+    
+    @OneToMany
+    private Set<Encontro> encontros;
     
 }
