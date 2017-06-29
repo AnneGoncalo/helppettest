@@ -39,8 +39,12 @@ public class UsuarioVL {
                 if (validarSenha(u).equals("OK")) {
                     if (validarNascimento(u).equals("OK")) {
                         if (validarLocalizacao(u).equals("OK")) {
-                            dao.cadastrarUsuario(u);
-                            return "Cadastrado com sucesso";
+                            if (validarTelefone(u).equals("OK")) {
+                                dao.cadastrarUsuario(u);
+                                return "Cadastrado com sucesso";
+                            } else {
+                                return validarTelefone(u);
+                            }
                         } else {
                             return validarLocalizacao(u);
                         }
@@ -196,6 +200,36 @@ public class UsuarioVL {
 
     }
 
+    // Formato: (00)00000-0000 OU (00) 00000-0000
+    public String validarTelefone(Usuario u) {
+
+        if (u.getTelefone() != null && !u.getTelefone().equals("")) {
+            if (u.getTelefone().length() == 14 || u.getTelefone().length() == 15) {
+
+                char[] t = u.getTelefone().toCharArray();
+                if (u.getTelefone().length() == 14) {
+                    if (Character.isDigit(t[1]) && Character.isDigit(t[2]) && Character.isDigit(t[4]) && Character.isDigit(t[5]) && Character.isDigit(t[6]) && Character.isDigit(t[7]) && Character.isDigit(t[8]) && Character.isDigit(t[10]) && Character.isDigit(t[11]) && Character.isDigit(t[12]) && Character.isDigit(t[13]) && t[0] == '(' && t[3] == ')' && t[9] == '-') {
+                        return "OK";
+                    } else {
+                        return "Informe um telefone válido";
+                    }
+                } else {
+                    if (t[0] == '(' && t[3] == ')' && t[10] == '-' && Character.isDigit(t[1]) && Character.isDigit(t[2]) && t[4] == ' ' && Character.isDigit(t[5]) && Character.isDigit(t[6]) && Character.isDigit(t[7]) && Character.isDigit(t[8]) && Character.isDigit(t[9]) && Character.isDigit(t[11]) && Character.isDigit(t[12]) && Character.isDigit(t[13]) && Character.isDigit(t[14])) {
+                        return "OK";
+                    } else {
+                        return "Informe um telefone válido";
+                    }
+                }
+
+            } else {
+                return "Informe um telefone válido";
+            }
+        } else {
+            return "OK";
+        }
+
+    }
+
     public String editarUsuario(Usuario u) {
 
         if (validarNome(u).equals("OK")) {
@@ -217,17 +251,14 @@ public class UsuarioVL {
             return validarNome(u);
         }
     }
-    
-    
+
     // Verifica se a conta que será excluída pertence ao usuário que deseja excluí-la
-    public String excluirConta(Usuario u1, Usuario u2){
-        if(u1.equals(u2)){
+    public String excluirConta(Usuario u1, Usuario u2) {
+        if (u1.equals(u2)) {
             return "Conta excluída";
         } else {
             return "Conta não encontrada";
         }
     }
-    
+
 }
-
-
