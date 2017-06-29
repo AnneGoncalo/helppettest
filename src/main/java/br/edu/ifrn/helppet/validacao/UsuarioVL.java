@@ -23,6 +23,8 @@ import br.edu.ifrn.helppet.dominio.Usuario;
  */
 public class UsuarioVL {
     
+    private final int nomeGrande = 30;
+    
     private String validarEmail(Usuario u){
         boolean temEspaco = false;
         boolean temArroba = false;
@@ -90,5 +92,45 @@ public class UsuarioVL {
             return "E-mail é um campo obrigatório";
         }
     }
+    
+    private String validarNome(Usuario u) {
+        if (u.getNome() != null) {
+            String palavraSemEspaco = u.getNome().trim();
+            if (!u.getNome().isEmpty() && (palavraSemEspaco.length() != 0)) {
+                if (u.getNome().length() <= nomeGrande) {
+                    return "OK";
+                } else {
+                    return "Nome muito grande";
+                }
+            } else {
+                return "Informe um nome válido";
+            }
+        } else {
+            return "Nome é um campo obrigatório";
+        }
+    }
+    
+    
+    private String validarSenha(Usuario u) {
+        if (u.getSenha() != null) {
+            String palavraSemEspaco = u.getNome().trim();
+            if (!u.getSenha().isEmpty() && (palavraSemEspaco.length() != 0)) {
+                if(u.getSenha().length() >= 6){
+                    if(u.getSenha().length() <= 30){
+                        return "OK";
+                    } else {
+                        return "Senha muito grande";
+                    }
+                } else {
+                    return "Senha muito pequena";
+                }
+            } else {
+                return "Informe uma senha válida";
+            }
+        } else {
+            return "Senha é um campo obrigatório";
+        }
+    }
+    
     
 }
