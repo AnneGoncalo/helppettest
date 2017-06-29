@@ -61,5 +61,5 @@ public class Estoque implements Serializable {
     private double qtdIdeal;
     
     @ManyToOne
-    private Usuario usuario;
+    private PessoaJuridica ong;
 }

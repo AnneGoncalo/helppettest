@@ -58,10 +58,16 @@ public class Usuario implements Serializable {
     @ManyToOne
     private Permissao permissao;
     
-    @OneToMany
+    @OneToMany(mappedBy = "responsavel")
     private Set<Animal> animais;
     
-    @OneToMany
-    private Set<Encontro> encontros;
+    @OneToMany(mappedBy = "responsavel")
+    private Set<Evento> eventos;
+    
+    @OneToMany(mappedBy = "responsavel")
+    private Set<Anuncio> anuncios;
+    
+    @OneToMany(mappedBy = "usuario")
+    private Set<Experiencia> experiencias;
     
 }

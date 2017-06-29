@@ -69,7 +69,7 @@ public class Encontro implements Serializable {
     private Animal animal;
     
     @ManyToOne
-    private Usuario adotante;
+    private PessoaFisica adotante;
 
     public boolean isEmpty() {
         return !(this.animal != null && this.adotante != null && this.localizacao != null && this.dataHorario != null);

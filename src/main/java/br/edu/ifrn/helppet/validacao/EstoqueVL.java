@@ -129,12 +129,12 @@ public class EstoqueVL {
      CNPJ, então NÃO COLOQUEI O CNPJ COMO REQUISITO. 
      */
     private String validarONG(Estoque estoque) {
-        if (estoque.getUsuario() != null) {
-            if (dao.ListarPJ().contains(estoque.getUsuario())) {
-                if (estoque.getUsuario().getUsuario().getNome() != null) {
-                    if (estoque.getUsuario().getUsuario().getEmail() != null) {
-                        if (estoque.getUsuario().getUsuario().getLocalizacao() != null) {
-                            if (estoque.getUsuario().getUsuario().getTelefone() != null) {
+        if (estoque.getOng() != null) {
+            if (dao.ListarPJ().contains(estoque.getOng())) {
+                if (estoque.getOng().getUsuario().getNome() != null) {
+                    if (estoque.getOng().getUsuario().getEmail() != null) {
+                        if (estoque.getOng().getUsuario().getLocalizacao() != null) {
+                            if (estoque.getOng().getUsuario().getTelefone() != null) {
                                 return "OK";
                             } else {
                                 return "Telefone da ONG não pode ser nulo";
@@ -168,7 +168,7 @@ public class EstoqueVL {
         for (Estoque e : dao.ListarEstoques()) {
             if (e.equals(estoque)) {
                 if (testeUser == true) {
-                    if (estoque.getUsuario().equals(pj)) {
+                    if (estoque.getOng().equals(pj)) {
                         // pega estoque no bd
                         testeEnc = true;
                         return "OK";
@@ -214,7 +214,7 @@ public class EstoqueVL {
             if (u.equals(pj)) {
                 for (Estoque e : dao.ListarEstoques()) {
                     if (e.equals(estoque)) {
-                        if (estoque.getUsuario().equals(pj)) {
+                        if (estoque.getOng().equals(pj)) {
                             dao.excluirEstoque(e);
                             return "Estoque excluído";
                         }
