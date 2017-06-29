@@ -23,25 +23,25 @@ import br.edu.ifrn.helppet.dominio.Usuario;
  */
 public class UsuarioVL {
     
-    private String validarEmail(String email){
+    private String validarEmail(Usuario u){
         boolean temEspaco = false;
         boolean temArroba = false;
         int posicaoDoArroba = 0;
         int posicaoDoPonto = 0;
 
-        if (email != null) {
-            String palavraSemEspaco = email.trim();
-            if (!email.isEmpty() && (palavraSemEspaco.length() != 0)) {
-                for (int i = 0; i < email.length(); i++) {
-                    if (email.charAt(i) == ' ') {
+        if (u.getEmail() != null) {
+            String palavraSemEspaco = u.getEmail().trim();
+            if (!u.getEmail().isEmpty() && (palavraSemEspaco.length() != 0)) {
+                for (int i = 0; i < u.getEmail().length(); i++) {
+                    if (u.getEmail().charAt(i) == ' ') {
                         temEspaco = true;
                         break;
                     }
                 }
                 if (!temEspaco) {
                     int cont_arroba = 0;
-                    for (int i = 0; i < email.length(); i++) {
-                        if (email.charAt(i) == '@') {
+                    for (int i = 0; i < u.getEmail().length(); i++) {
+                        if (u.getEmail().charAt(i) == '@') {
                             cont_arroba++;
                             posicaoDoArroba = i;
                         }
@@ -49,8 +49,8 @@ public class UsuarioVL {
                     int cont_ponto = 0;
                     if (cont_arroba == 1) {
                         if (posicaoDoArroba > 0) {
-                            for (int i = posicaoDoArroba; i < email.length(); i++) {
-                                if (email.charAt(i) == '.') {
+                            for (int i = posicaoDoArroba; i < u.getEmail().length(); i++) {
+                                if (u.getEmail().charAt(i) == '.') {
                                     cont_ponto++;
                                     posicaoDoPonto = i;
                                 }
@@ -60,7 +60,7 @@ public class UsuarioVL {
                                 
                                 if((posicaoDoPonto-posicaoDoArroba) >= 2){
                                     
-                                    if(posicaoDoPonto != email.length()-1){
+                                    if(posicaoDoPonto != u.getEmail().length()-1){
                                         return "OK";
                                     } else {
                                         return "Tem que haver um caractere após o ponto";
