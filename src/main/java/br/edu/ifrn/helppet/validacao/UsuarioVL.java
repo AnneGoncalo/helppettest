@@ -63,31 +63,31 @@ public class UsuarioVL {
                                     if(posicaoDoPonto != u.getEmail().length()-1){
                                         return "OK";
                                     } else {
-                                        return "Tem que haver um caractere após o ponto";
+                                        return "Informe um e-mail válido";
                                     }
                                     
                                 } else {
-                                    return "Não pode haver um ponto logo após o arroba";
+                                    return "Informe um e-mail válido";
                                 }
                                 
                             } else {
-                                return "Tem que haver 1 ponto após o arroba";
+                                return "Informe um e-mail válido";
                             }
 
                         } else {
-                            return "O primeiro caractere não pode ser o arroba";
+                            return "Informe um e-mail válidoa";
                         }
                     } else {
-                        return "O email não tem arroba ou tem mais te 1";
+                        return "Informe um e-mail válido";
                     }
                 } else {
-                    return "E-mail não pode ter espaço.";
+                    return "Informe um e-mail válido";
                 }
             } else {
-                return "Informe um email válido";
+                return "Informe um e-mail válido";
             }
         } else {
-            return "E-mail não pode ser nulo";
+            return "E-mail é um campo obrigatório";
         }
     }
     
