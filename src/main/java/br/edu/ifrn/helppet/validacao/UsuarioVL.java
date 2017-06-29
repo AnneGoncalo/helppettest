@@ -236,8 +236,12 @@ public class UsuarioVL {
             if (validarSenha(u).equals("OK")) {
                 if (validarNascimento(u).equals("OK")) {
                     if (validarLocalizacao(u).equals("OK")) {
-                        dao.cadastrarUsuario(u);
-                        return "Editado com sucesso";
+                        if (validarTelefone(u).equals("OK")) {
+                            dao.cadastrarUsuario(u);
+                            return "Editado com sucesso";
+                        } else {
+                            return validarTelefone(u);
+                        }
                     } else {
                         return validarLocalizacao(u);
                     }
