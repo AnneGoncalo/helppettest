@@ -1,10 +1,12 @@
 package br.edu.ifrn.helppet.dominio;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,17 +18,20 @@ import lombok.ToString;
 
 /**
  *
- * @author camila
+ * @author anne
  */
 @Getter
 @Setter
 @ToString(exclude = "foto")
-@EqualsAndHashCode(exclude = {"foto", "nascimento", "localizacao"})
+@EqualsAndHashCode(exclude = {"id", "foto", "nascimento", "localizacao"})
 @Builder
-@Entity
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class Usuario {
+@Entity
+@SequenceGenerator(sequenceName = "seq_usuario", name = "ID_SEQUENCE", allocationSize = 1)
+public class Usuario implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
