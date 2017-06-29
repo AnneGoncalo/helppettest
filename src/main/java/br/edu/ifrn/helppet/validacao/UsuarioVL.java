@@ -16,6 +16,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Usuario;
+import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 
 /**
  *
@@ -24,6 +25,38 @@ import br.edu.ifrn.helppet.dominio.Usuario;
 public class UsuarioVL {
     
     private final int nomeGrande = 30;
+    private final int tamanhoFrase = 255;
+    
+    PersistenciaGamb dao;
+    
+    public UsuarioVL(){
+        dao = new PersistenciaGamb();
+    }
+    
+    public String cadastrarUsuario(Usuario u){
+        if(validarEmail(u).equals("OK")){
+            if(validarNome(u).equals("OK")){
+                if(validarSenha(u).equals("OK")){
+                    if(validarNascimento(u).equals("OK")){
+                        if(validarLocalizacao(u).equals("OK")){
+                            dao.cadastrarUsuario(u);
+                            return "Cadastrado com sucesso";
+                        } else {
+                            return validarLocalizacao(u);
+                        }
+                    } else {
+                        return validarNascimento(u);
+                    }
+                } else {
+                    return validarSenha(u);
+                }
+            } else {
+                return validarNome(u);
+            }
+        } else {
+            return validarEmail(u);
+        }
+    }
     
     private String validarEmail(Usuario u){
         boolean temEspaco = false;
@@ -134,6 +167,7 @@ public class UsuarioVL {
     
     
     // Formato: dd/MM/AAAA (10 caracteres na string)
+    // Inventando a roda.. ¬¬
     public String validarNascimento(Usuario u) {
         if(u.getNascimento() != null && !u.getNascimento().equals("")){
             if(u.getNascimento().length() == 10){
@@ -151,5 +185,22 @@ public class UsuarioVL {
     }
 
     
+    private String validarLocalizacao(Usuario u) {
+        
+        
+        if(u.getLocalizacao() != null && !u.getLocalizacao().equals("")){
+            if(u.getLocalizacao().length() <= 255){
+                return "OK";
+            } else {
+                return "Localização muito grande";
+            }
+        } else {
+            return "OK";
+        }
+        
+    }
     
+    
+    
+
 }

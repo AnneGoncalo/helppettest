@@ -105,6 +105,11 @@ public class PersistenciaGamb {
         listaDeEstoques.add(estoque);
     }
     
+    public void cadastrarUsuario(Usuario usuario) {
+        listaDeUsuarios.add(usuario);
+    }
+    
+       
     public void editarAnimal(Animal animal) {
         // MÉTODO PARA EDITAR ANIMAL
     }
