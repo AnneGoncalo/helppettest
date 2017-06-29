@@ -15,7 +15,17 @@
  */
 package br.edu.ifrn.helppet.dominio;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,22 +42,33 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(exclude = "editado")
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"id", "editado", "status"})
 @Builder
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class Encontro {
+@Entity
+@SequenceGenerator(sequenceName = "seq_encontro", name = "ID_SEQUENCE", allocationSize = 1)
+public class Encontro implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+    private Long id;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataHorario;
     
     private String localizacao;
    
     private boolean editado;
     
-    private boolean statusEncontro;
+    private boolean status;
     
+    @ManyToOne
     private Animal animal;
     
+    @ManyToOne
     private PessoaFisica adotante;
 
     public boolean isEmpty() {
