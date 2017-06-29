@@ -91,7 +91,7 @@ public class UsuarioVL {
                                 }
                             }
 
-                            if (cont_ponto == 1) {
+                            if (cont_ponto >= 1) {
 
                                 if ((posicaoDoPonto - posicaoDoArroba) >= 2) {
 
