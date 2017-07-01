@@ -319,6 +319,7 @@ public class UsuarioVL {
 
                         // Verifica se os digitos calculados conferem com os digitos informados.
                         if ((dig10 == pf.getCpf().charAt(9)) && (dig11 == pf.getCpf().charAt(10))) {
+                            pf.setCpf(imprimeCPF(pf.getCpf()));
                             return "OK";
                         } else {
                             return "Informe um CPF válido";
