@@ -19,6 +19,7 @@ import br.edu.ifrn.helppet.dominio.Animal;
 import br.edu.ifrn.helppet.dominio.Denuncia;
 import br.edu.ifrn.helppet.dominio.Encontro;
 import br.edu.ifrn.helppet.dominio.Estoque;
+import br.edu.ifrn.helppet.dominio.Evento;
 import br.edu.ifrn.helppet.dominio.PessoaFisica;
 import br.edu.ifrn.helppet.dominio.PessoaJuridica;
 import br.edu.ifrn.helppet.dominio.Usuario;
@@ -38,6 +39,8 @@ public class PersistenciaGamb {
     List<PessoaJuridica> listaDePJ = new ArrayList();
     List<Encontro> listaDeEncontros = new ArrayList();
     List<Estoque> listaDeEstoques = new ArrayList();
+    List<Evento> listaDeEventos = new ArrayList();
+    
     
 
     public PersistenciaGamb() {
@@ -99,6 +102,10 @@ public class PersistenciaGamb {
 
     public void cadastrarEncontro(Encontro encontro) {
         listaDeEncontros.add(encontro);
+    }
+    
+    public void cadastrarEvento(Evento evento) {
+        listaDeEventos.add(evento);
     }
 
     public void cadastrarEstoque(Estoque estoque) {

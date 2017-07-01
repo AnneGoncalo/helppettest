@@ -33,6 +33,32 @@ public class EventoVL {
     public EventoVL() {
         dao = new PersistenciaGamb();
     }
+    
+    
+    public String cadastrarEvento(Evento e){
+        if(validarNome(e).equals("OK")){
+            if(validarData(e).equals("OK")){
+                if(validarLocalizacao(e).equals("OK")){
+                    if(validarDescricao(e).equals("OK")){
+                        if(validarResponsavel(e).equals("OK")){
+                            dao.cadastrarEvento(e);
+                            return "Cadastrado com sucesso";
+                        }else {
+                            return validarResponsavel(e);
+                        }
+                    } else {
+                        return validarDescricao(e);
+                    }
+                } else {
+                    return validarLocalizacao(e);
+                }
+            } else {
+                return validarData(e);
+            }
+        } else {
+            return validarNome(e);
+        }
+    }
 
     private String validarNome(Evento e) {
         if (e.getNome() != null) {
