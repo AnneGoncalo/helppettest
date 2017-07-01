@@ -140,6 +140,10 @@ public class PersistenciaGamb {
         // MÉTODO PARA EDITAR DENUNCIA
     }
     
+    public void editarAnuncio(Anuncio anuncio) {
+        // MÉTODO PARA EDITAR ANUNCIO
+    }
+    
     public void excluirAnimal(Animal animal){
         // MÉTODO PARA EXCLUIR ANIMAL
     }

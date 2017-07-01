@@ -137,4 +137,23 @@ public class AnuncioVL {
         }
     }
     
+    public String editarAnuncio(Anuncio a){
+        if(a.getTitulo().equals("OK")){
+            if(validarTipo(a).equals("OK")){
+                if(validarDescricao(a).equals("OK")){
+                    
+                        dao.editarAnuncio(a);
+                        return "Editado com sucesso";
+                    
+                } else {
+                    return validarDescricao(a);
+                }
+            } else {
+                return validarTipo(a);
+            }
+        } else {
+            return validarTitulo(a);
+        }
+    }
+    
 }
