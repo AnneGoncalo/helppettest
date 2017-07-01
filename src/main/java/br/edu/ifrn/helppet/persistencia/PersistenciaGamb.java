@@ -16,6 +16,7 @@
 package br.edu.ifrn.helppet.persistencia;
 
 import br.edu.ifrn.helppet.dominio.Animal;
+import br.edu.ifrn.helppet.dominio.Anuncio;
 import br.edu.ifrn.helppet.dominio.Denuncia;
 import br.edu.ifrn.helppet.dominio.Encontro;
 import br.edu.ifrn.helppet.dominio.Estoque;
@@ -40,6 +41,8 @@ public class PersistenciaGamb {
     List<Encontro> listaDeEncontros = new ArrayList();
     List<Estoque> listaDeEstoques = new ArrayList();
     List<Evento> listaDeEventos = new ArrayList();
+    List<Anuncio> listaDeAnuncios = new ArrayList();
+    
     
     
 
@@ -104,6 +107,10 @@ public class PersistenciaGamb {
         listaDeAnimais.add(animal);
     }
 
+    public void cadastrarAnuncio(Anuncio anuncio) {
+        listaDeAnuncios.add(anuncio);
+    }
+    
     public void cadastrarEncontro(Encontro encontro) {
         listaDeEncontros.add(encontro);
     }

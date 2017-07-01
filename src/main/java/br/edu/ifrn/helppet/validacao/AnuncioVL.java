@@ -116,4 +116,25 @@ public class AnuncioVL {
     }
 
     
+    public String cadastrarAnuncio(Anuncio a){
+        if(a.getTitulo().equals("OK")){
+            if(validarTipo(a).equals("OK")){
+                if(validarDescricao(a).equals("OK")){
+                    if(validarResponsavel(a).equals("OK")){
+                        dao.cadastrarAnuncio(a);
+                        return "Cadastrado com sucesso";
+                    } else {
+                        return validarResponsavel(a);
+                    }
+                } else {
+                    return validarDescricao(a);
+                }
+            } else {
+                return validarTipo(a);
+            }
+        } else {
+            return validarTitulo(a);
+        }
+    }
+    
 }
