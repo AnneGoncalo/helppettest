@@ -16,6 +16,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Anuncio;
+import br.edu.ifrn.helppet.dominio.Usuario;
 import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.util.ArrayList;
 import java.util.List;
@@ -155,5 +156,23 @@ public class AnuncioVL {
             return validarTitulo(a);
         }
     }
+    
+    public String excluirAnuncio(Anuncio anuncio, Usuario usuario) {
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                for (Anuncio a : dao.ListarAnuncios()) {
+                    if (a.equals(anuncio)) {
+                        if (a.getResponsavel().equals(usuario)) {
+                            dao.excluirAnuncio(a);
+                            return "Anúncio excluído";
+                        }
+                    }
+                }
+            }
+        }
+        return "Anúncio não encontrado";
+
+    }
+
     
 }

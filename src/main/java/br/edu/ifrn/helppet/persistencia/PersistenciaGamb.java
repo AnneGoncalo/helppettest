@@ -63,6 +63,11 @@ public class PersistenciaGamb {
         return listaDeEstoques;
     }
 
+    public List<Evento> ListarEventos() {
+        return listaDeEventos;
+    }
+
+    
     public List<PessoaFisica> ListarPF() {
         return listaDePF;
     }
@@ -70,9 +75,10 @@ public class PersistenciaGamb {
     public List<Denuncia> ListarDenuncias() {
         return listaDeDenuncias;
     }
+      
     
-    public List<Evento> ListarEventos() {
-        return listaDeEventos;
+    public List<Anuncio> ListarAnuncios() {
+        return listaDeAnuncios;
     }
 
     public List<Animal> ListarAnimais() {
@@ -146,6 +152,10 @@ public class PersistenciaGamb {
     
     public void excluirAnimal(Animal animal){
         // MÉTODO PARA EXCLUIR ANIMAL
+    }
+    
+    public void excluirAnuncio(Anuncio anuncio){
+        // MÉTODO PARA EXCLUIR ANUNCIO
     }
     
     public void excluirEncontro(Encontro encontro){
