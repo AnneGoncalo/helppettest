@@ -67,6 +67,10 @@ public class PersistenciaGamb {
     public List<Denuncia> ListarDenuncias() {
         return listaDeDenuncias;
     }
+    
+    public List<Evento> ListarEventos() {
+        return listaDeEventos;
+    }
 
     public List<Animal> ListarAnimais() {
         return listaDeAnimais;
@@ -135,6 +139,10 @@ public class PersistenciaGamb {
     
     public void excluirEncontro(Encontro encontro){
         // MÉTODO PARA EXCLUIR ENCONTRO
+    }
+    
+    public void excluirEvento(Evento evento){
+        // MÉTODO PARA EXCLUIR EVENTO
     }
     
     public void excluirEstoque(Estoque estoque){

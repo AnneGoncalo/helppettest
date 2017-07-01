@@ -16,6 +16,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Evento;
+import br.edu.ifrn.helppet.dominio.Usuario;
 import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -173,6 +174,23 @@ public class EventoVL {
         } else {
             return validarNome(e);
         }
+    }
+    
+    public String excluirEvento(Evento evento, Usuario usuario) {
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                for (Evento e : dao.ListarEventos()) {
+                    if (e.equals(evento)) {
+                        if (e.getResponsavel().equals(usuario)) {
+                            dao.excluirEvento(e);
+                            return "Evento excluído";
+                        }
+                    }
+                }
+            }
+        }
+        return "Evento não encontrado";
+
     }
 
 }
