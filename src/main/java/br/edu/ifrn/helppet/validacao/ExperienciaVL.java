@@ -16,6 +16,7 @@
 package br.edu.ifrn.helppet.validacao;
 
 import br.edu.ifrn.helppet.dominio.Experiencia;
+import br.edu.ifrn.helppet.dominio.Usuario;
 import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class ExperienciaVL {
                 if(validarTexto(e).equals("OK")){
                     if(validarResponsavel(e).equals("OK")){
                         dao.cadastrarExperiencia(e);
-                        return "OK";
+                        return "Cadastrado com sucesso";
                     } else {
                         return validarResponsavel(e);
                     }
@@ -137,4 +138,40 @@ public class ExperienciaVL {
         }
     }
 
+    public String editarExperiencia(Experiencia e){
+        if(validarTitulo(e).equals("OK")){
+            if(validarTipo(e).equals("OK")){
+                if(validarTexto(e).equals("OK")){
+                    
+                        dao.editarExperiencia(e);
+                        return "Editado com sucesso";
+                    
+                } else {
+                    return validarTexto(e);
+                }
+            } else {
+                return validarTipo(e);
+            }
+        }else {
+            return validarTitulo(e);
+        }
+    }
+
+    public String excluirExperiencia(Experiencia experiencia, Usuario usuario) {
+        for (Usuario u : dao.ListarUsuarios()) {
+            if (u.equals(usuario)) {
+                for (Experiencia e : dao.ListarExperiencias()) {
+                    if (e.equals(experiencia)) {
+                        if (e.getUsuario().equals(usuario)) {
+                            dao.excluirExperiencia(experiencia);
+                            return "Experiência excluída";
+                        }
+                    }
+                }
+            }
+        }
+        return "Experiência não encontrado";
+
+    }
+    
 }

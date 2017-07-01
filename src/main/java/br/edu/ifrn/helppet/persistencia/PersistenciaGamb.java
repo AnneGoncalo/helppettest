@@ -87,6 +87,11 @@ public class PersistenciaGamb {
         return listaDeAnimais;
     }
     
+    public List<Experiencia> ListarExperiencias() {
+        return listaDeExperiencias;
+    }
+    
+    
     public List<PessoaJuridica> ListarPJ() {
         return listaDePJ;
     }
@@ -145,6 +150,10 @@ public class PersistenciaGamb {
         // MÉTODO PARA EDITAR ANIMAL
     }
     
+    public void editarExperiencia(Experiencia experiencia) {
+        // MÉTODO PARA EDITAR EXPERIENCIA
+    }
+    
     public void editarEstoque(Estoque estoque) {
         // MÉTODO PARA EDITAR ESTOQUE
     }
@@ -171,6 +180,10 @@ public class PersistenciaGamb {
     
     public void excluirEvento(Evento evento){
         // MÉTODO PARA EXCLUIR EVENTO
+    }
+    
+    public void excluirExperiencia(Experiencia experiencia){
+        // MÉTODO PARA EXCLUIR EXPERIENCIA
     }
     
     public void excluirEstoque(Estoque estoque){
