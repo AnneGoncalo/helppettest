@@ -39,7 +39,7 @@ public class AnuncioVL {
         tipos.add("higiene");
         tipos.add("acessórios");
         tipos.add("outro");
-        
+        dao = new PersistenciaGamb();
     }
     
     private String validarTitulo(Anuncio a) {
