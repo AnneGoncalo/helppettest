@@ -27,6 +27,7 @@ import java.util.List;
 public class AnuncioVL {
     
     private final int tamanhoNome = 45;
+    private final int tamanhoFrase = 255;
     private final List<String> tipos = new ArrayList();
     PersistenciaGamb dao;
     
@@ -72,5 +73,47 @@ public class AnuncioVL {
             return "Tipo inválido";
         }
     }
+    
+    private String validarDescricao(Anuncio a) {
+        if (a.getDescricao() != null && !a.getDescricao().equals("")) {
+            if (a.getDescricao().length() <= tamanhoFrase) {
+                return "OK";
+            } else {
+                return "Descrição muito grande";
+            }
+        } else {
+            return "OK";
+        }
+    }
+    
+    private String validarResponsavel(Anuncio a) {
+
+        if (a.getResponsavel() != null) {
+            if (dao.ListarUsuarios().contains(a.getResponsavel())) {
+                if (a.getResponsavel().getNome() != null) {
+                    if (a.getResponsavel().getEmail() != null) {
+                        if (a.getResponsavel().getLocalizacao() != null) {
+                            if (a.getResponsavel().getTelefone() != null) {
+                                return "OK";
+                            } else {
+                                return "Telefone do responsável não pode ser nulo";
+                            }
+                        } else {
+                            return "Localização do responsável não pode ser nulo";
+                        }
+                    } else {
+                        return "E-mail do responsável não pode ser nulo.";
+                    }
+                } else {
+                    return "Nome do responsável não pode ser nulo";
+                }
+            } else {
+                return "Responsável não cadastrado";
+            }
+        } else {
+            return "O evento tem que ter um responsável";
+        }
+    }
+
     
 }

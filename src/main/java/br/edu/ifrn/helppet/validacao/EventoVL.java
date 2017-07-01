@@ -113,7 +113,7 @@ public class EventoVL {
     }
 
     private String validarDescricao(Evento e) {
-        if (e.getDescricao() != null && !e.getData().equals("")) {
+        if (e.getDescricao() != null && !e.getDescricao().equals("")) {
             if (e.getDescricao().length() <= tamanhoFrase) {
                 return "OK";
             } else {
