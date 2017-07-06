@@ -15,8 +15,10 @@
  */
 package br.edu.ifrn.helppet.validacao;
 
+import br.edu.ifrn.helppet.dominio.PessoaFisica;
 import br.edu.ifrn.helppet.dominio.Usuario;
 import br.edu.ifrn.helppet.persistencia.PersistenciaGamb;
+import java.util.InputMismatchException;
 
 /**
  *
@@ -39,8 +41,12 @@ public class UsuarioVL {
                 if (validarSenha(u).equals("OK")) {
                     if (validarNascimento(u).equals("OK")) {
                         if (validarLocalizacao(u).equals("OK")) {
-                            dao.cadastrarUsuario(u);
-                            return "Cadastrado com sucesso";
+                            if (validarTelefone(u).equals("OK")) {
+                                dao.cadastrarUsuario(u);
+                                return "Cadastrado com sucesso";
+                            } else {
+                                return validarTelefone(u);
+                            }
                         } else {
                             return validarLocalizacao(u);
                         }
@@ -91,7 +97,7 @@ public class UsuarioVL {
                                 }
                             }
 
-                            if (cont_ponto == 1) {
+                            if (cont_ponto >= 1) {
 
                                 if ((posicaoDoPonto - posicaoDoArroba) >= 2) {
 
@@ -165,11 +171,11 @@ public class UsuarioVL {
     }
 
     // Formato: dd/MM/AAAA (10 caracteres na string)
-    // Inventando a roda.. ¬¬
     public String validarNascimento(Usuario u) {
         if (u.getNascimento() != null && !u.getNascimento().equals("")) {
             if (u.getNascimento().length() == 10) {
-                if ((u.getNascimento().charAt(0) == '1' || u.getNascimento().charAt(0) == '2' || u.getNascimento().charAt(0) == '3' || u.getNascimento().charAt(0) == '4' || u.getNascimento().charAt(0) == '5' || u.getNascimento().charAt(0) == '6' || u.getNascimento().charAt(0) == '7' || u.getNascimento().charAt(0) == '8' || u.getNascimento().charAt(0) == '9' || u.getNascimento().charAt(0) == '0') && (u.getNascimento().charAt(1) == '1' || u.getNascimento().charAt(1) == '2' || u.getNascimento().charAt(1) == '3' || u.getNascimento().charAt(1) == '4' || u.getNascimento().charAt(1) == '5' || u.getNascimento().charAt(1) == '6' || u.getNascimento().charAt(1) == '7' || u.getNascimento().charAt(1) == '8' || u.getNascimento().charAt(1) == '9' || u.getNascimento().charAt(1) == '0') && (u.getNascimento().charAt(3) == '1' || u.getNascimento().charAt(3) == '2' || u.getNascimento().charAt(3) == '3' || u.getNascimento().charAt(3) == '4' || u.getNascimento().charAt(3) == '5' || u.getNascimento().charAt(3) == '6' || u.getNascimento().charAt(3) == '7' || u.getNascimento().charAt(3) == '8' || u.getNascimento().charAt(3) == '9' || u.getNascimento().charAt(3) == '0') && (u.getNascimento().charAt(4) == '1' || u.getNascimento().charAt(4) == '2' || u.getNascimento().charAt(4) == '3' || u.getNascimento().charAt(4) == '4' || u.getNascimento().charAt(4) == '5' || u.getNascimento().charAt(4) == '6' || u.getNascimento().charAt(4) == '7' || u.getNascimento().charAt(4) == '8' || u.getNascimento().charAt(4) == '9' || u.getNascimento().charAt(4) == '0') && (u.getNascimento().charAt(6) == '1' || u.getNascimento().charAt(6) == '2' || u.getNascimento().charAt(6) == '3' || u.getNascimento().charAt(6) == '4' || u.getNascimento().charAt(6) == '5' || u.getNascimento().charAt(6) == '6' || u.getNascimento().charAt(6) == '7' || u.getNascimento().charAt(6) == '8' || u.getNascimento().charAt(6) == '9' || u.getNascimento().charAt(6) == '0') && (u.getNascimento().charAt(7) == '1' || u.getNascimento().charAt(7) == '2' || u.getNascimento().charAt(7) == '3' || u.getNascimento().charAt(7) == '4' || u.getNascimento().charAt(7) == '5' || u.getNascimento().charAt(7) == '6' || u.getNascimento().charAt(7) == '7' || u.getNascimento().charAt(7) == '8' || u.getNascimento().charAt(7) == '9' || u.getNascimento().charAt(7) == '0') && (u.getNascimento().charAt(8) == '1' || u.getNascimento().charAt(8) == '2' || u.getNascimento().charAt(8) == '3' || u.getNascimento().charAt(8) == '4' || u.getNascimento().charAt(8) == '5' || u.getNascimento().charAt(8) == '6' || u.getNascimento().charAt(8) == '7' || u.getNascimento().charAt(8) == '8' || u.getNascimento().charAt(8) == '9' || u.getNascimento().charAt(8) == '0') && (u.getNascimento().charAt(9) == '1' || u.getNascimento().charAt(9) == '2' || u.getNascimento().charAt(9) == '3' || u.getNascimento().charAt(9) == '4' || u.getNascimento().charAt(9) == '5' || u.getNascimento().charAt(9) == '6' || u.getNascimento().charAt(9) == '7' || u.getNascimento().charAt(9) == '8' || u.getNascimento().charAt(9) == '9' || u.getNascimento().charAt(9) == '0') && (u.getNascimento().charAt(2) == '/') && (u.getNascimento().charAt(5) == '/')) {
+                char[] t = u.getNascimento().toCharArray();
+                if (t[2] == '/' && t[5] == '/' && Character.isDigit(t[0]) && Character.isDigit(t[1]) && Character.isDigit(t[3]) && Character.isDigit(t[4]) && Character.isDigit(t[6]) && Character.isDigit(t[7]) && Character.isDigit(t[8]) && Character.isDigit(t[9])) {
                     return "OK";
                 } else {
                     return "Data de nascimento inválida";
@@ -196,14 +202,48 @@ public class UsuarioVL {
 
     }
 
+    // Formato: (00)00000-0000 OU (00) 00000-0000
+    public String validarTelefone(Usuario u) {
+
+        if (u.getTelefone() != null && !u.getTelefone().equals("")) {
+            if (u.getTelefone().length() == 14 || u.getTelefone().length() == 15) {
+
+                char[] t = u.getTelefone().toCharArray();
+                if (u.getTelefone().length() == 14) {
+                    if (Character.isDigit(t[1]) && Character.isDigit(t[2]) && Character.isDigit(t[4]) && Character.isDigit(t[5]) && Character.isDigit(t[6]) && Character.isDigit(t[7]) && Character.isDigit(t[8]) && Character.isDigit(t[10]) && Character.isDigit(t[11]) && Character.isDigit(t[12]) && Character.isDigit(t[13]) && t[0] == '(' && t[3] == ')' && t[9] == '-') {
+                        return "OK";
+                    } else {
+                        return "Informe um telefone válido";
+                    }
+                } else {
+                    if (t[0] == '(' && t[3] == ')' && t[10] == '-' && Character.isDigit(t[1]) && Character.isDigit(t[2]) && t[4] == ' ' && Character.isDigit(t[5]) && Character.isDigit(t[6]) && Character.isDigit(t[7]) && Character.isDigit(t[8]) && Character.isDigit(t[9]) && Character.isDigit(t[11]) && Character.isDigit(t[12]) && Character.isDigit(t[13]) && Character.isDigit(t[14])) {
+                        return "OK";
+                    } else {
+                        return "Informe um telefone válido";
+                    }
+                }
+
+            } else {
+                return "Informe um telefone válido";
+            }
+        } else {
+            return "OK";
+        }
+
+    }
+
     public String editarUsuario(Usuario u) {
 
         if (validarNome(u).equals("OK")) {
             if (validarSenha(u).equals("OK")) {
                 if (validarNascimento(u).equals("OK")) {
                     if (validarLocalizacao(u).equals("OK")) {
-                        dao.cadastrarUsuario(u);
-                        return "Editado com sucesso";
+                        if (validarTelefone(u).equals("OK")) {
+                            dao.cadastrarUsuario(u);
+                            return "Editado com sucesso";
+                        } else {
+                            return validarTelefone(u);
+                        }
                     } else {
                         return validarLocalizacao(u);
                     }
@@ -217,17 +257,156 @@ public class UsuarioVL {
             return validarNome(u);
         }
     }
-    
-    
+
     // Verifica se a conta que será excluída pertence ao usuário que deseja excluí-la
-    public String excluirConta(Usuario u1, Usuario u2){
-        if(u1.equals(u2)){
+    // Dúvida
+    public String excluirConta(Usuario u1, Usuario u2) {
+        if (u1.equals(u2)) {
             return "Conta excluída";
         } else {
             return "Conta não encontrada";
         }
     }
     
+    public String validarCPF(PessoaFisica pf) {
+        String cpfFormatado = null;
+        if (pf.getCpf() != null && !pf.getCpf().equals("")) {
+            if (pf.getCpf().length() == 11) {
+                if (pf.getCpf().equals("00000000000") || pf.getCpf().equals("11111111111")
+                        || pf.getCpf().equals("22222222222") || pf.getCpf().equals("33333333333")
+                        || pf.getCpf().equals("44444444444") || pf.getCpf().equals("55555555555")
+                        || pf.getCpf().equals("66666666666") || pf.getCpf().equals("77777777777")
+                        || pf.getCpf().equals("88888888888") || pf.getCpf().equals("99999999999")) {
+                    return "Informe um CPF válido";
+                } else {
+                    char dig10, dig11;
+                    int sm, i, r, num, peso;
+
+                    try { // protege o codigo para eventuais erros de conversao de tipo (int)
+                        // Cálculo do 1º dígito verificador
+                        sm = 0;
+                        peso = 10;
+                        for (i = 0; i < 9; i++) {
+                            // converte o i-esimo caractere do CPF em um numero:
+                            // por exemplo, transforma o caractere '0' no inteiro 0         
+                            // (48 eh a posicao de '0' na tabela ASCII)         
+                            num = (int) (pf.getCpf().charAt(i) - 48);
+                            sm = sm + (num * peso);
+                            peso = peso - 1;
+                        }
+
+                        r = 11 - (sm % 11);
+                        if ((r == 10) || (r == 11)) {
+                            dig10 = '0';
+                        } else {
+                            dig10 = (char) (r + 48); // converte no respectivo caractere numerico
+                        }
+                        // Cálculo do 2º dígito verificador
+                        sm = 0;
+                        peso = 11;
+                        for (i = 0; i < 10; i++) {
+                            num = (int) (pf.getCpf().charAt(i) - 48);
+                            sm = sm + (num * peso);
+                            peso = peso - 1;
+                        }
+
+                        r = 11 - (sm % 11);
+                        if ((r == 10) || (r == 11)) {
+                            dig11 = '0';
+                        } else {
+                            dig11 = (char) (r + 48);
+                        }
+
+                        // Verifica se os digitos calculados conferem com os digitos informados.
+                        if ((dig10 == pf.getCpf().charAt(9)) && (dig11 == pf.getCpf().charAt(10))) {
+                            pf.setCpf(imprimeCPF(pf.getCpf()));
+                            return "OK";
+                        } else {
+                            return "Informe um CPF válido";
+                        }
+                    } catch (InputMismatchException erro) {
+                        return "Informe um CPF válido";
+                    }
+                }
+            } else if (pf.getCpf().length() == 14) {
+
+                char[] c = pf.getCpf().toCharArray();
+                String cpf_ = "";
+                int cont = 0;
+                if (c[3] == '.' && c[7] == '.' && c[11] == '-') {
+
+                    for (int i = 0; i < c.length; i++) {
+                        if (Character.isDigit(c[i])) {
+                            cpf_ = cpf_ + c[i];
+                        }
+                    }
+
+                    char dig10, dig11;
+                    int sm, i, r, num, peso;
+
+                    try { // protege o codigo para eventuais erros de conversao de tipo (int)
+                        // Cálculo do 1º dígito verificador
+                        sm = 0;
+                        peso = 10;
+                        for (i = 0; i < 9; i++) {
+                            // converte o i-esimo caractere do CPF em um numero:
+                            // por exemplo, transforma o caractere '0' no inteiro 0         
+                            // (48 eh a posicao de '0' na tabela ASCII)         
+                            num = (int) (cpf_.charAt(i) - 48);
+                            sm = sm + (num * peso);
+                            peso = peso - 1;
+                        }
+
+                        r = 11 - (sm % 11);
+                        if ((r == 10) || (r == 11)) {
+                            dig10 = '0';
+                        } else {
+                            dig10 = (char) (r + 48); // converte no respectivo caractere numerico
+                        }
+                        // Cálculo do 2º dígito verificador
+                        sm = 0;
+                        peso = 11;
+                        for (i = 0; i < 10; i++) {
+                            num = (int) (cpf_.charAt(i) - 48);
+                            sm = sm + (num * peso);
+                            peso = peso - 1;
+                        }
+
+                        r = 11 - (sm % 11);
+                        if ((r == 10) || (r == 11)) {
+                            dig11 = '0';
+                        } else {
+                            dig11 = (char) (r + 48);
+                        }
+
+                        // Verifica se os digitos calculados conferem com os digitos informados.
+                        if ((dig10 == cpf_.charAt(9)) && (dig11 == cpf_.charAt(10))) {
+                            return "OK";
+                        } else {
+                            return "Informe um CPF válido";
+                        }
+                    } catch (InputMismatchException erro) {
+                        return "Informe um CPF válido";
+                    }
+
+                } else {
+                    return "Informe um CPF válido";
+                }
+
+            } else {
+                return "Informe um CPF válido";
+            }
+        } else {
+            return "OK";
+        }
+    }
+
+    private static String imprimeCPF(String CPF) {
+        return (CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "."
+                + CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
+    }
+
+    
+    
+
 }
-
-

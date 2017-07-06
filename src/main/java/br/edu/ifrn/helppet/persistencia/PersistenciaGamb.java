@@ -16,9 +16,12 @@
 package br.edu.ifrn.helppet.persistencia;
 
 import br.edu.ifrn.helppet.dominio.Animal;
+import br.edu.ifrn.helppet.dominio.Anuncio;
 import br.edu.ifrn.helppet.dominio.Denuncia;
 import br.edu.ifrn.helppet.dominio.Encontro;
 import br.edu.ifrn.helppet.dominio.Estoque;
+import br.edu.ifrn.helppet.dominio.Evento;
+import br.edu.ifrn.helppet.dominio.Experiencia;
 import br.edu.ifrn.helppet.dominio.PessoaFisica;
 import br.edu.ifrn.helppet.dominio.PessoaJuridica;
 import br.edu.ifrn.helppet.dominio.Usuario;
@@ -38,6 +41,11 @@ public class PersistenciaGamb {
     List<PessoaJuridica> listaDePJ = new ArrayList();
     List<Encontro> listaDeEncontros = new ArrayList();
     List<Estoque> listaDeEstoques = new ArrayList();
+    List<Evento> listaDeEventos = new ArrayList();
+    List<Anuncio> listaDeAnuncios = new ArrayList();
+    List<Experiencia> listaDeExperiencias = new ArrayList();
+     
+    
     
 
     public PersistenciaGamb() {
@@ -57,6 +65,11 @@ public class PersistenciaGamb {
         return listaDeEstoques;
     }
 
+    public List<Evento> ListarEventos() {
+        return listaDeEventos;
+    }
+
+    
     public List<PessoaFisica> ListarPF() {
         return listaDePF;
     }
@@ -64,10 +77,20 @@ public class PersistenciaGamb {
     public List<Denuncia> ListarDenuncias() {
         return listaDeDenuncias;
     }
+      
+    
+    public List<Anuncio> ListarAnuncios() {
+        return listaDeAnuncios;
+    }
 
     public List<Animal> ListarAnimais() {
         return listaDeAnimais;
     }
+    
+    public List<Experiencia> ListarExperiencias() {
+        return listaDeExperiencias;
+    }
+    
     
     public List<PessoaJuridica> ListarPJ() {
         return listaDePJ;
@@ -97,8 +120,21 @@ public class PersistenciaGamb {
         listaDeAnimais.add(animal);
     }
 
+    public void cadastrarAnuncio(Anuncio anuncio) {
+        listaDeAnuncios.add(anuncio);
+    }
+    
     public void cadastrarEncontro(Encontro encontro) {
         listaDeEncontros.add(encontro);
+    }
+    
+    public void cadastrarExperiencia(Experiencia experiencia) {
+        listaDeExperiencias.add(experiencia);
+    }
+    
+    
+    public void cadastrarEvento(Evento evento) {
+        listaDeEventos.add(evento);
     }
 
     public void cadastrarEstoque(Estoque estoque) {
@@ -114,6 +150,10 @@ public class PersistenciaGamb {
         // MÉTODO PARA EDITAR ANIMAL
     }
     
+    public void editarExperiencia(Experiencia experiencia) {
+        // MÉTODO PARA EDITAR EXPERIENCIA
+    }
+    
     public void editarEstoque(Estoque estoque) {
         // MÉTODO PARA EDITAR ESTOQUE
     }
@@ -122,12 +162,28 @@ public class PersistenciaGamb {
         // MÉTODO PARA EDITAR DENUNCIA
     }
     
+    public void editarAnuncio(Anuncio anuncio) {
+        // MÉTODO PARA EDITAR ANUNCIO
+    }
+    
     public void excluirAnimal(Animal animal){
         // MÉTODO PARA EXCLUIR ANIMAL
     }
     
+    public void excluirAnuncio(Anuncio anuncio){
+        // MÉTODO PARA EXCLUIR ANUNCIO
+    }
+    
     public void excluirEncontro(Encontro encontro){
         // MÉTODO PARA EXCLUIR ENCONTRO
+    }
+    
+    public void excluirEvento(Evento evento){
+        // MÉTODO PARA EXCLUIR EVENTO
+    }
+    
+    public void excluirExperiencia(Experiencia experiencia){
+        // MÉTODO PARA EXCLUIR EXPERIENCIA
     }
     
     public void excluirEstoque(Estoque estoque){
